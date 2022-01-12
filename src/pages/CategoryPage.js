@@ -2,6 +2,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import EntriesList from "../components/EntriesList";
+import './CategoryPage.css'
+import FilterCard from "../components/FilterCard";
 
 const CategoryPage = () => {
   const ENTRIES = [
@@ -31,7 +33,16 @@ const CategoryPage = () => {
       },
   ];
 
-  return <EntriesList items={ENTRIES} />;
+  return <div className="grid-container">
+    <div className="grid-child">
+      <FilterCard />
+    </div>
+    <div className="grid-child">
+    <EntriesList items={ENTRIES} />;
+    </div>
+  </div>
+  
+  
 };
 
 export default withRouter(CategoryPage)
