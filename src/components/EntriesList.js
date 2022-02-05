@@ -15,18 +15,18 @@ const EntriesList = (props) => {
   }
 
   return (
-      <ul className="entries-list">
-        {props.items.map((entry) => (
-          <EntryItem
-            key={entry.id}
-            id={entry.id}
-            image={entry.image}
-            name={entry.name}
-            entryCount={entry.entries}
-            description={entry.description}
-          />
-        ))}
-      </ul>
+    <ul className="entries-list">
+      {props.items.map((entry) => (
+        <EntryItem
+          key={entry.id}
+          id={entry.id}
+          image={entry.image}
+          name={entry.name}
+          entryCount={entry.entries}
+          description={entry.description}
+        />
+      ))}
+    </ul>
   );
 };
 
