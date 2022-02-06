@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import SiteHeader from "./components/SiteHeader";
 import Categories from "./pages/Categories";
-import CategoryPage from "./pages/CategoryPage";
+import CategoryEntries from "./pages/CategoryEntries";
 
 function App() {
   const theme = createTheme();
@@ -23,7 +23,7 @@ function App() {
             </Route>
             <Route exact path="/home" component={Categories} />
 
-            <Route path="/category/:id" component={CategoryPage} />
+            <Route path="/category/:catId" component={CategoryEntries} />
 
             <Redirect to="/" />
           </Switch>

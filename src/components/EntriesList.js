@@ -21,7 +21,7 @@ const EntriesList = (props) => {
           key={entry.id}
           id={entry.id}
           image={entry.image}
-          name={entry.name}
+          title={entry.title}
           entryCount={entry.entries}
           description={entry.description}
         />

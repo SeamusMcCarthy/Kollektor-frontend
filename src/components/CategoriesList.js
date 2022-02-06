@@ -22,7 +22,7 @@ const CategoriesList = (props) => {
           id={cat.id}
           image={cat.image}
           name={cat.title}
-          entryCount={cat.entries}
+          entryCount={cat.entries.length}
           description={cat.description}
         />
       ))}
