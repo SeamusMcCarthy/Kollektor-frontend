@@ -1,0 +1,10 @@
+.common-list {
+  list-style: none;
+  margin: 2% auto;
+  padding: 0;
+  width: 90%;
+  max-width: 90rem;
+  display: grid;
+  justify-content: center;
+  flex-wrap: wrap;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import EntryItem from "./EntryItem";
-import Card from "./Card";
+import Card from "../shared/components/UIElements/Card";
 import "./EntriesList.css";
 
 const EntriesList = (props) => {

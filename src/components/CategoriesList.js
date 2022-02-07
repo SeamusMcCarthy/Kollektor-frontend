@@ -1,7 +1,7 @@
 import React from "react";
 import CategoryItem from "./CategoryItem";
-import Card from "./Card";
-import "./CategoriesList.css";
+import Card from "../shared/components/UIElements/Card";
+import "./List.css";
 
 const CategoriesList = (props) => {
   if (props.items.length === 0) {
@@ -15,7 +15,7 @@ const CategoriesList = (props) => {
   }
 
   return (
-    <ul className="users-list">
+    <ul className="common-list">
       {props.items.map((cat) => (
         <CategoryItem
           key={cat.id}
