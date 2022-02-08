@@ -8,7 +8,7 @@ const CategoryItem = (props) => {
   return (
     <li className="user-item">
       <Card className="user-item__content">
-        <Link to={`/category/${props.id}`}>
+        <Link to={`/entry/${props.id}`}>
           <div className="user-item__image">
             <Avatar image={props.image} alt={props.name} />
           </div>

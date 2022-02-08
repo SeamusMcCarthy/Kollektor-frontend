@@ -7,9 +7,9 @@ import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import useHttpClient from "../shared/hooks/http-hook";
 
-const CategoryEntries = (props) => {
-  const catId = useParams().catId;
-  console.log("Category : " + catId);
+const UserEntries = (props) => {
+  const userId = useParams().userId;
+  console.log("User : " + userId);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedEntries, setLoadedEntries] = useState();
 
@@ -17,7 +17,7 @@ const CategoryEntries = (props) => {
     async function fetchEntries() {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/v1/entry/cat/${catId}`
+          `http://localhost:5000/api/v1/entry/user/${userId}`
         );
         setLoadedEntries(responseData.entries);
       } catch (e) {
@@ -25,7 +25,7 @@ const CategoryEntries = (props) => {
       }
     }
     fetchEntries();
-  }, [sendRequest, catId]);
+  }, [sendRequest, userId]);
 
   // return (
   //   <div className="grid-container">
@@ -48,4 +48,4 @@ const CategoryEntries = (props) => {
   );
 };
 
-export default withRouter(CategoryEntries);
+export default withRouter(UserEntries);

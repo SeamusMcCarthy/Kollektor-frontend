@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+// import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -6,17 +6,70 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-import SiteHeader from "./components/SiteHeader";
+// import SiteHeader from "./components/SiteHeader";
 import Categories from "./pages/Categories";
 import Users from "./pages/Users";
 import Auth from "./pages/Auth";
-import CategoryEntries from "./pages/CategoryEntries";
 import AuthContext from "./shared/contexts/auth-context";
 import { useAuth } from "./shared/hooks/auth-hook";
+import MainNavigation from "./shared/components/Navigation/MainNavigation";
+import CategoryEntries from "./pages/CategoryEntries";
+import UserEntries from "./pages/UserEntries";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
-  const theme = createTheme();
+  let routes;
+  if (token) {
+    routes = (
+      <Switch>
+        <Route path="/" exact>
+          <Categories />
+        </Route>
+        <Route path="/category/:catId" exact>
+          <CategoryEntries />
+        </Route>
+        <Route path="/users" exact>
+          <Users />
+        </Route>
+        <Route path="/user/:userId" exact>
+          <UserEntries />
+        </Route>
+        <Route path="/new" exact>
+          <Users />
+        </Route>
+        <Route path="/profile" exact>
+          <Users />
+        </Route>
+        <Route path="/entry/:eid" exact>
+          <Users />
+        </Route>
+
+        <Redirect to="/" />
+      </Switch>
+    );
+  } else {
+    routes = (
+      <Switch>
+        <Route path="/" exact>
+          <Categories />
+        </Route>
+        <Route path="/category/:catId" exact>
+          <CategoryEntries />
+        </Route>
+        <Route path="/users" exact>
+          <Users />
+        </Route>
+        <Route path="/user/:userId" exact>
+          <UserEntries />
+        </Route>
+        <Route path="/auth" exact>
+          <Auth />
+        </Route>
+        <Redirect to="/auth" />
+      </Switch>
+    );
+  }
+  // const theme = createTheme();
   return (
     <AuthContext.Provider
       value={{
@@ -28,23 +81,8 @@ function App() {
       }}
     >
       <Router>
-        <ThemeProvider theme={theme}>
-          <SiteHeader />
-          <main>
-            <Switch>
-              <Route path="/" exact>
-                <Categories />
-              </Route>
-              <Route exact path="/home" component={Categories} />
-              <Route exact path="/users" component={Users} />
-              <Route exact path="/auth" component={Auth} />
-
-              <Route path="/category/:catId" component={CategoryEntries} />
-
-              <Redirect to="/" />
-            </Switch>
-          </main>
-        </ThemeProvider>
+        <MainNavigation />
+        <main>{routes}</main>
       </Router>
     </AuthContext.Provider>
   );
