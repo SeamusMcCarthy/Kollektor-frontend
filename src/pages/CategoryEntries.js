@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { withRouter } from "react-router-dom";
-import EntriesList from "../components/EntriesList";
+// import EntriesList from "../components/EntriesList";
 import "./Entries.css";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import useHttpClient from "../shared/hooks/http-hook";
+import Search from "../components/Search";
 
 const CategoryEntries = (props) => {
   const catId = useParams().catId;
@@ -26,15 +27,6 @@ const CategoryEntries = (props) => {
     }
     fetchEntries();
   }, [sendRequest, catId]);
-
-  // return (
-  //   <div className="grid-container">
-  //     <div className="grid-child">
-  //       <EntriesList items={loadedEntries} />;
-  //     </div>
-  //   </div>
-  // );
-
   return (
     <>
       <ErrorModal error={error} onClear={clearError} />
@@ -43,7 +35,8 @@ const CategoryEntries = (props) => {
           <LoadingSpinner asOverlay />
         </div>
       )}
-      {!isLoading && loadedEntries && <EntriesList items={loadedEntries} />}
+      {/* {!isLoading && loadedEntries && <EntriesList items={loadedEntries} />} */}
+      {!isLoading && loadedEntries && <Search items={loadedEntries} />}
     </>
   );
 };

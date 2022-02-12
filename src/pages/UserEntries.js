@@ -6,6 +6,7 @@ import "./Entries.css";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import useHttpClient from "../shared/hooks/http-hook";
+import Search from "../components/Search";
 
 const UserEntries = (props) => {
   const userId = useParams().userId;
@@ -43,7 +44,8 @@ const UserEntries = (props) => {
           <LoadingSpinner asOverlay />
         </div>
       )}
-      {!isLoading && loadedEntries && <EntriesList items={loadedEntries} />}
+      {/* {!isLoading && loadedEntries && <EntriesList items={loadedEntries} />} */}
+      {!isLoading && loadedEntries && <Search items={loadedEntries} />}
     </>
   );
 };

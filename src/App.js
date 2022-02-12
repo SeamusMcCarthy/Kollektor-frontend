@@ -15,6 +15,7 @@ import { useAuth } from "./shared/hooks/auth-hook";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import CategoryEntries from "./pages/CategoryEntries";
 import UserEntries from "./pages/UserEntries";
+import AddEntry from "./pages/AddEntry";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -35,7 +36,7 @@ function App() {
           <UserEntries />
         </Route>
         <Route path="/new" exact>
-          <Users />
+          <AddEntry />
         </Route>
         <Route path="/profile" exact>
           <Users />

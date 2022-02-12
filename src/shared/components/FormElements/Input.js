@@ -45,71 +45,71 @@ function Input(props) {
     dispatch({ type: "TOUCH" });
   }
 
-  const element =
-    props.element === "input" ? (
-      <input
-        id={props.id}
-        type={props.type}
-        placeholder={props.placeholder}
-        onChange={changeHandler}
-        onBlur={touchHandler}
-        value={inputState.value}
-      />
-    ) : (
-      <textarea
-        id={props.id}
-        rows={props.rows || 3}
-        onChange={changeHandler}
-        onBlur={touchHandler}
-        value={inputState.value}
-      />
-    );
+  // const element =
+  //   props.element === "input" ? (
+  //     <input
+  //       id={props.id}
+  //       type={props.type}
+  //       placeholder={props.placeholder}
+  //       onChange={changeHandler}
+  //       onBlur={touchHandler}
+  //       value={inputState.value}
+  //     />
+  //   ) : (
+  //     <textarea
+  //       id={props.id}
+  //       rows={props.rows || 3}
+  //       onChange={changeHandler}
+  //       onBlur={touchHandler}
+  //       value={inputState.value}
+  //     />
+  //   );
 
-  // let element;
-  // switch (props.element) {
-  //   case "input":
-  //     element = (
-  //       <input
-  //         id={props.id}
-  //         type={props.type}
-  //         placeholder={props.placeholder}
-  //         onChange={changeHandler}
-  //         onBlur={touchHandler}
-  //         value={inputState.value}
-  //       />
-  //     );
-  //     break;
-  //   case "textarea":
-  //     element = (
-  //       <textarea
-  //         id={props.id}
-  //         rows={props.rows || 3}
-  //         onChange={changeHandler}
-  //         onBlur={touchHandler}
-  //         value={inputState.value}
-  //       />
-  //     );
-  //     break;
-  //   case "select":
-  //     element = (
-  //       <select
-  //         id={props.id}
-  //         onChange={changeHandler}
-  //         onBlur={touchHandler}
-  //         value={inputState.value}
-  //       >
-  //         <option value="" disabled>
-  //           Select your option
-  //         </option>
-  //         <option value="guitar">Guitar</option>
-  //         <option value="bass">Bass</option>
-  //         <option value="fx">FX</option>
-  //       </select>
-  //     );
-  //     break;
-  //   default:
-  //     element = "";
-  // }
+  let element;
+  switch (props.element) {
+    case "input":
+      element = (
+        <input
+          id={props.id}
+          type={props.type}
+          placeholder={props.placeholder}
+          onChange={changeHandler}
+          onBlur={touchHandler}
+          value={inputState.value}
+        />
+      );
+      break;
+    case "textarea":
+      element = (
+        <textarea
+          id={props.id}
+          rows={props.rows || 3}
+          onChange={changeHandler}
+          onBlur={touchHandler}
+          value={inputState.value}
+        />
+      );
+      break;
+    case "select":
+      element = (
+        <select
+          id={props.id}
+          onChange={changeHandler}
+          onBlur={touchHandler}
+          value={inputState.value}
+        >
+          <option value="" disabled>
+            Select your option
+          </option>
+          <option value="guitar">Guitar</option>
+          <option value="bass">Bass</option>
+          <option value="fx">FX</option>
+        </select>
+      );
+      break;
+    default:
+      element = "";
+  }
 
   return (
     <div

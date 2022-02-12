@@ -1,0 +1,29 @@
+.search {
+  width: 90%;
+  max-width: 25rem;
+  margin: 3rem auto;
+  text-align: center;
+  background: #a6a9ad;
+}
+
+.search label,
+.search input {
+  display: block;
+}
+
+.search label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.search input {
+  width: 100%;
+  font: inherit;
+  border: 1px solid #ccc;
+  background: #f8f8f8;
+  padding: 0.15rem 0.25rem;
+}
+
+.left {
+  float: left;
+}
