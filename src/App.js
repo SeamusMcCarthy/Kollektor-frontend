@@ -16,6 +16,7 @@ import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import CategoryEntries from "./pages/CategoryEntries";
 import UserEntries from "./pages/UserEntries";
 import AddEntry from "./pages/AddEntry";
+import ViewEntry from "./pages/ViewEntry";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -42,7 +43,7 @@ function App() {
           <Users />
         </Route>
         <Route path="/entry/:eid" exact>
-          <Users />
+          <ViewEntry />
         </Route>
 
         <Redirect to="/" />
@@ -66,11 +67,14 @@ function App() {
         <Route path="/auth" exact>
           <Auth />
         </Route>
+        <Route path="/entry/:eid" exact>
+          <ViewEntry />
+        </Route>
         <Redirect to="/auth" />
       </Switch>
     );
   }
-  // const theme = createTheme();
+
   return (
     <AuthContext.Provider
       value={{

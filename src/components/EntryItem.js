@@ -4,7 +4,7 @@ import Avatar from "../shared/components/UIElements/Avatar";
 import Card from "../shared/components/UIElements/Card";
 import "./Item.css";
 
-const CategoryItem = (props) => {
+const EntryItem = (props) => {
   return (
     <li className="user-item">
       <Card className="user-item__content">
@@ -26,4 +26,4 @@ const CategoryItem = (props) => {
   );
 };
 
-export default CategoryItem;
+export default EntryItem;
