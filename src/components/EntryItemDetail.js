@@ -10,7 +10,6 @@ import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 
 const EntryItemDetail = (props) => {
-  console.log("Props = " + props.address);
   const auth = useContext(AuthContext);
   const [showMap, setShowMap] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -22,7 +21,6 @@ const EntryItemDetail = (props) => {
   const cancelDeleteHandler = () => setShowConfirmModal(false);
   const confirmDeleteHandler = async () => {
     setShowConfirmModal(false);
-    console.log("DELETING");
     try {
       await sendRequest(
         `http://localhost:5000/api/v1/entry/${props.id}`,

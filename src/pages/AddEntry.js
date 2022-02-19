@@ -48,7 +48,6 @@ const AddEntry = () => {
 
   async function entrySubmitHandler(event) {
     event.preventDefault();
-    console.log(formState.inputs);
     const formData = new FormData();
     formData.append("title", formState.inputs.title.value);
     formData.append("description", formState.inputs.description.value);

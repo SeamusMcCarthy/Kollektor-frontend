@@ -51,7 +51,11 @@ const ViewEntry = () => {
             coordinates={loadedEntry.location}
             onDelete={entryDeleteHandler}
           />
-          <Comments currentUserId={auth.userId} />
+          <Comments
+            currentUserId={auth.userId}
+            comments={loadedEntry.comments}
+            entryId={entryId}
+          />
         </>
       )}
     </>

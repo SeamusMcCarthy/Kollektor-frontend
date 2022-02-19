@@ -10,7 +10,6 @@ import Search from "../components/Search";
 
 const CategoryEntries = (props) => {
   const catId = useParams().catId;
-  console.log("Category : " + catId);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedEntries, setLoadedEntries] = useState();
 

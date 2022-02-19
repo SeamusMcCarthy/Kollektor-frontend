@@ -1,31 +1,54 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import {
-  getComments as getCommentsApi,
-  createComment as createCommentApi,
+  // getComments as getCommentsApi,
+  // createComment as createCommentApi,
   updateComment as updateCommentApi,
   deleteComment as deleteCommentApi,
 } from "./api";
+import useHttpClient from "../shared/hooks/http-hook";
+import AuthContext from "../shared/contexts/auth-context";
 
-const Comments = ({ commentsUrl, currentUserId }) => {
+const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
+  const auth = useContext(AuthContext);
+  const { sendRequest } = useHttpClient();
+
   const rootComments = backendComments.filter(
     (backendComment) => backendComment.parentId === null
   );
+
   const getReplies = (commentId) =>
     backendComments
       .filter((backendComment) => backendComment.parentId === commentId)
       .sort(
         (a, b) =>
-          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          // new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          new Date(a.dateAdded).getTime() - new Date(b.dataAdded).getTime()
       );
-  const addComment = (text, parentId) => {
-    createCommentApi(text, parentId).then((comment) => {
-      setBackendComments([comment, ...backendComments]);
+
+  const addComment = async (text, parentId = null) => {
+    console.log("Entry Id in comments = " + text);
+    try {
+      const responseData = await sendRequest(
+        `http://localhost:5000/api/v1/comment/${entryId}`,
+        "POST",
+        JSON.stringify({
+          body: text,
+          parentId,
+          creator: auth.userId,
+          dateAdded: new Date().toISOString(),
+        }),
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        }
+      );
+      setBackendComments([responseData, ...backendComments]);
       setActiveComment(null);
-    });
+    } catch (e) {}
   };
 
   const updateComment = (text, commentId) => {
@@ -40,6 +63,7 @@ const Comments = ({ commentsUrl, currentUserId }) => {
       setActiveComment(null);
     });
   };
+
   const deleteComment = (commentId) => {
     if (window.confirm("Are you sure you want to remove comment?")) {
       deleteCommentApi().then(() => {
@@ -52,10 +76,11 @@ const Comments = ({ commentsUrl, currentUserId }) => {
   };
 
   useEffect(() => {
-    getCommentsApi().then((data) => {
-      setBackendComments(data);
-    });
-  }, []);
+    // getCommentsApi().then((data) => {
+    //   setBackendComments(data);
+    // });
+    setBackendComments(comments);
+  }, [comments]);
 
   return (
     <div className="comments">
@@ -74,6 +99,7 @@ const Comments = ({ commentsUrl, currentUserId }) => {
             deleteComment={deleteComment}
             updateComment={updateComment}
             currentUserId={currentUserId}
+            entryId={entryId}
           />
         ))}
       </div>

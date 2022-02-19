@@ -51,9 +51,6 @@ function Auth() {
             "Content-Type": "application/json",
           }
         );
-        console.log(
-          "Response " + responseData.userId + " " + responseData.token
-        );
         auth.login(responseData.userId, responseData.token);
       } catch (e) {}
     } else {
@@ -69,7 +66,6 @@ function Auth() {
           "POST",
           formData
         );
-        console.log("ash" + responseData.userId + " " + responseData.token);
         auth.login(responseData.userId, responseData.token);
       } catch (e) {}
     }
