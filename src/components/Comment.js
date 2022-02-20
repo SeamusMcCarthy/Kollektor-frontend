@@ -1,4 +1,6 @@
 import CommentForm from "./CommentForm";
+import Avatar from "../shared/components/UIElements/Avatar";
+import "./Item.css";
 
 const Comment = ({
   comment,
@@ -20,22 +22,25 @@ const Comment = ({
     activeComment.id === comment.id &&
     activeComment.type === "replying";
   const fiveMinutes = 300000;
-  const timePassed = new Date() - new Date(comment.createdAt) > fiveMinutes;
+  const timePassed = new Date() - new Date(comment.dateAdded) > fiveMinutes;
   const canDelete =
     currentUserId === comment.userId && replies.length === 0 && !timePassed;
   const canReply = Boolean(currentUserId);
   const canEdit = currentUserId === comment.userId && !timePassed;
   const replyId = parentId ? parentId : comment.id;
-  const createdAt = new Date(comment.createdAt).toLocaleDateString();
+  const dateAdded = new Date(comment.dateAdded).toLocaleDateString();
   return (
     <div key={comment.id} className="comment">
-      <div className="comment-image-container">
-        <img src="/user-icon.png" />
+      <div className="user-item__image">
+        <Avatar
+          image={`http://localhost:5000/${comment.creator.image}`}
+          alt={comment.creator.name}
+        />
       </div>
       <div className="comment-right-part">
         <div className="comment-content">
-          <div className="comment-author">{comment.username}</div>
-          <div>{createdAt}</div>
+          <div className="comment-author">{comment.creator.name}</div>
+          <div>{dateAdded}</div>
         </div>
         {!isEditing && <div className="comment-text">{comment.body}</div>}
         {isEditing && (

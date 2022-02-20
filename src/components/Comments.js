@@ -14,6 +14,7 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
   const auth = useContext(AuthContext);
+  console.log("Comments auth userid = " + auth.userId);
   const { sendRequest } = useHttpClient();
 
   const rootComments = backendComments.filter(
@@ -30,7 +31,6 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
       );
 
   const addComment = async (text, parentId = null) => {
-    console.log("Entry Id in comments = " + text);
     try {
       const responseData = await sendRequest(
         `http://localhost:5000/api/v1/comment/${entryId}`,
@@ -46,7 +46,7 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
           Authorization: "Bearer " + auth.token,
         }
       );
-      setBackendComments([responseData, ...backendComments]);
+      setBackendComments([responseData.comment, ...backendComments]);
       setActiveComment(null);
     } catch (e) {}
   };
@@ -76,9 +76,6 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
   };
 
   useEffect(() => {
-    // getCommentsApi().then((data) => {
-    //   setBackendComments(data);
-    // });
     setBackendComments(comments);
   }, [comments]);
 
@@ -98,7 +95,7 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
             addComment={addComment}
             deleteComment={deleteComment}
             updateComment={updateComment}
-            currentUserId={currentUserId}
+            currentUserId={auth.userId}
             entryId={entryId}
           />
         ))}
