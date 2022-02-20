@@ -1,12 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
-import {
-  // getComments as getCommentsApi,
-  // createComment as createCommentApi,
-  updateComment as updateCommentApi,
-  deleteComment as deleteCommentApi,
-} from "./api";
+
 import useHttpClient from "../shared/hooks/http-hook";
 import AuthContext from "../shared/contexts/auth-context";
 
@@ -14,7 +9,6 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
   const auth = useContext(AuthContext);
-  console.log("Comments auth userid = " + auth.userId);
   const { sendRequest } = useHttpClient();
 
   const rootComments = backendComments.filter(
@@ -51,8 +45,19 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
     } catch (e) {}
   };
 
-  const updateComment = (text, commentId) => {
-    updateCommentApi(text).then(() => {
+  const updateComment = async (text, commentId) => {
+    try {
+      await sendRequest(
+        `http://localhost:5000/api/v1/comment/${commentId}`,
+        "PATCH",
+        JSON.stringify({
+          body: text,
+        }),
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        }
+      );
       const updatedBackendComments = backendComments.map((backendComment) => {
         if (backendComment.id === commentId) {
           return { ...backendComment, body: text };
@@ -61,17 +66,26 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
       });
       setBackendComments(updatedBackendComments);
       setActiveComment(null);
-    });
+    } catch (e) {}
   };
 
-  const deleteComment = (commentId) => {
+  const deleteComment = async (commentId) => {
     if (window.confirm("Are you sure you want to remove comment?")) {
-      deleteCommentApi().then(() => {
-        const updatedBackendComments = backendComments.filter(
-          (backendComment) => backendComment.id !== commentId
+      try {
+        await sendRequest(
+          `http://localhost:5000/api/v1/comment/${commentId}`,
+          "DELETE",
+          null,
+          {
+            Authorization: "Bearer " + auth.token,
+          }
         );
-        setBackendComments(updatedBackendComments);
-      });
+      } catch (e) {}
+
+      const updatedBackendComments = backendComments.filter(
+        (backendComment) => backendComment.id !== commentId
+      );
+      setBackendComments(updatedBackendComments);
     }
   };
 

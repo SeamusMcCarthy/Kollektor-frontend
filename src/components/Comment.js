@@ -24,9 +24,9 @@ const Comment = ({
   const fiveMinutes = 300000;
   const timePassed = new Date() - new Date(comment.dateAdded) > fiveMinutes;
   const canDelete =
-    currentUserId === comment.userId && replies.length === 0 && !timePassed;
+    currentUserId === comment.creator.id && replies.length === 0 && timePassed;
   const canReply = Boolean(currentUserId);
-  const canEdit = currentUserId === comment.userId && !timePassed;
+  const canEdit = currentUserId === comment.creator.id && timePassed;
   const replyId = parentId ? parentId : comment.id;
   const dateAdded = new Date(comment.dateAdded).toLocaleDateString();
   return (
