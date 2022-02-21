@@ -1,1 +1,29 @@
-{}
+{
+    "experimentalStudio": true,
+    "integrationFolder": "cypress/integration",
+    "fixturesFolder": "cypress/fixtures",
+    "pluginsFile": "cypress/plugins",
+    "screenshotsFolder": "cypress/screenshots",
+    "supportFile": "cypress/support",
+    "videosFolder": "cypress/videos",
+    "defaultCommandTimeout": 50000,
+    "requestTimeout": 50000,
+    "responseTimeout": 50000,
+    "chromeWebSecurity": false,
+    "baseUrl": "http://localhost:3000",
+    "testFiles": "**/**spec.js",
+    "modifyObstructiveCode": false,
+    "reporter": "junit",
+    "retries": 2,
+    "reporterOptions": {
+      "mochaFile": "cypress/test-results-cypress-[hash].xml",
+      "toConsole": true,
+      "jenkinsMode": true
+    },
+    "viewportWidth": 1280,
+    "trashAssetsBeforeRuns": true,
+    "env": {
+      "FAIL_FAST_STRATEGY": "run",
+      "FAIL_FAST_ENABLED": true
+    }
+  }

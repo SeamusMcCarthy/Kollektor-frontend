@@ -21,3 +21,6 @@ import "./commands";
 
 //import command for plugin-tab
 require("cypress-plugin-tab");
+
+// import cypress-axe commands
+import "cypress-axe";

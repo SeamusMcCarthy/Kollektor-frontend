@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Scroll from "./Scroll";
+// import Scroll from "./Scroll";
 import EntriesList from "./EntriesList";
 import Card from "../shared/components/UIElements/Card";
 import "./Search.css";
 
 const Search = (props) => {
-  console.log(props.items);
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredEntries = props.items.filter((entry) => {

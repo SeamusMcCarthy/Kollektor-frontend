@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { withRouter } from "react-router-dom";
-import EntriesList from "../components/EntriesList";
+// import EntriesList from "../components/EntriesList";
 import "./Entries.css";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
