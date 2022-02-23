@@ -5,7 +5,7 @@ describe("Initial connectivity trial", () => {
     cy.visit("/");
   });
 
-  it.skip("Confirms we are on the homepage", () => {
+  it("Confirms we are on the homepage", () => {
     // cy.injectAxe();
     // cy.checkA11y();
     cy.findByRole("link", { name: /categories/i }).click();
