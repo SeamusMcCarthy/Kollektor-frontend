@@ -7,12 +7,14 @@ import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import EntryItemDetail from "../components/EntryItemDetail";
 import Comments from "../components/Comments";
 import AuthContext from "../shared/contexts/auth-context";
+import { useHistory } from "react-router-dom";
 
 const ViewEntry = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const entryId = useParams().eid;
   const [loadedEntry, setLoadedEntry] = useState();
+  const history = useHistory();
 
   useEffect(() => {
     const fetchEntry = async () => {
@@ -26,8 +28,8 @@ const ViewEntry = () => {
     fetchEntry();
   }, [sendRequest, entryId]);
 
-  function entryDeleteHandler(deletedEntryId) {
-    // Direct back to homepage
+  function entryDeleteHandler() {
+    history.push("/" + auth.userId + "/places/");
   }
   return (
     <>

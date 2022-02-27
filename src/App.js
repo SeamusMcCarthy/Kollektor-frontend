@@ -17,6 +17,9 @@ import CategoryEntries from "./pages/CategoryEntries";
 import UserEntries from "./pages/UserEntries";
 import AddEntry from "./pages/AddEntry";
 import ViewEntry from "./pages/ViewEntry";
+import UpdateEntry from "./pages/UpdateEntry";
+
+import Container from "@mui/material/Container";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -44,6 +47,9 @@ function App() {
         </Route>
         <Route path="/entry/:eid" exact>
           <ViewEntry />
+        </Route>
+        <Route path="/entries/:eid" exact>
+          <UpdateEntry />
         </Route>
 
         <Redirect to="/" />
@@ -87,7 +93,9 @@ function App() {
     >
       <Router>
         <MainNavigation />
-        <main>{routes}</main>
+        {/* <main>{routes}</main> */}
+        {/* <Container>{routes}</Container> */}
+        {routes}
       </Router>
     </AuthContext.Provider>
   );

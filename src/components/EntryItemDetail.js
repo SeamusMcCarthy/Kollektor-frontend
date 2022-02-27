@@ -89,7 +89,7 @@ const EntryItemDetail = (props) => {
               VIEW ON MAP
             </Button>
             {auth.userId === props.creatorId && (
-              <Button to={`/places/${props.id}`}>EDIT</Button>
+              <Button to={`/entries/${props.id}`}>EDIT</Button>
             )}
             {auth.userId === props.creatorId && (
               <Button danger onClick={showDeleteWarningHandler}>
