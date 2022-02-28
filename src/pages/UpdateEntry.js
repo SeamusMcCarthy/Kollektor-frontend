@@ -16,6 +16,7 @@ import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import AuthContext from "../shared/contexts/auth-context";
 
 function UpdateEntry(props) {
+  document.title = "Update Entry";
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const entryId = useParams().eid;
   const [identifiedEntry, setIdentifiedEntry] = useState();

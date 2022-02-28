@@ -16,6 +16,7 @@ import useHttpClient from "../shared/hooks/http-hook";
 import ImageUpload from "../shared/components/FormElements/ImageUpload";
 
 function Auth() {
+  document.title = "Sign Up / Sign In";
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
 

@@ -10,7 +10,7 @@ const Comment = ({
   updateComment,
   deleteComment,
   addComment,
-  parentId = null,
+  parentId,
   currentUserId,
 }) => {
   const isEditing =

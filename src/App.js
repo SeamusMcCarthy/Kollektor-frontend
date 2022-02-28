@@ -18,8 +18,9 @@ import UserEntries from "./pages/UserEntries";
 import AddEntry from "./pages/AddEntry";
 import ViewEntry from "./pages/ViewEntry";
 import UpdateEntry from "./pages/UpdateEntry";
+import UpdateProfile from "./pages/UpdateProfile";
 
-import Container from "@mui/material/Container";
+// import Container from "@mui/material/Container";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -42,8 +43,8 @@ function App() {
         <Route path="/new" exact>
           <AddEntry />
         </Route>
-        <Route path="/profile" exact>
-          <Users />
+        <Route path="/profile/:uid" exact>
+          <UpdateProfile />
         </Route>
         <Route path="/entry/:eid" exact>
           <ViewEntry />

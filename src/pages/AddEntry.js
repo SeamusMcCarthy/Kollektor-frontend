@@ -16,6 +16,7 @@ import { useHistory } from "react-router-dom";
 import ImageUpload from "../shared/components/FormElements/ImageUpload";
 
 const AddEntry = () => {
+  document.title = "New Entry";
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(

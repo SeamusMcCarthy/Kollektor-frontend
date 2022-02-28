@@ -7,6 +7,7 @@ import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import UsersList from "../components/UsersList";
 
 const Users = () => {
+  document.title = "Users";
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedUsers, setLoadedUsers] = useState();
 

@@ -9,6 +9,7 @@ import useHttpClient from "../shared/hooks/http-hook";
 import Search from "../components/Search";
 
 const CategoryEntries = (props) => {
+  document.title = "Category Entries";
   const catId = useParams().catId;
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedEntries, setLoadedEntries] = useState();
