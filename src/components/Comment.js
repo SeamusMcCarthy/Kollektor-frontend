@@ -1,5 +1,6 @@
 import CommentForm from "./CommentForm";
-import Avatar from "../shared/components/UIElements/Avatar";
+// import Avatar from "../shared/components/UIElements/Avatar";
+import Avatar from "@mui/material/Avatar";
 import "./Item.css";
 
 const Comment = ({
@@ -33,8 +34,9 @@ const Comment = ({
     <div key={comment.id} className="comment">
       <div className="user-item__image">
         <Avatar
-          image={`http://localhost:5000/${comment.creator.image}`}
+          src={`http://localhost:5000/${comment.creator.image}`}
           alt={comment.creator.name}
+          sx={{ width: 60, height: 60 }}
         />
       </div>
       <div className="comment-right-part">

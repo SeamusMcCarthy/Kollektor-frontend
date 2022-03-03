@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import Card from "../shared/components/UIElements/Card";
+// import Card from "../shared/components/UIElements/Card";
+import Card from "@mui/material/Card";
 import Button from "../shared/components/FormElements/Button";
 import Modal from "../shared/components/UIElements/Modal";
 import Map from "../shared/components/UIElements/Map";

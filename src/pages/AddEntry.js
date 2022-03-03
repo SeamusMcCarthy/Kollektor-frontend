@@ -7,7 +7,8 @@ import {
 } from "../shared/util/validators";
 import "./EntryForm.css";
 import { useForm } from "../shared/hooks/form-hook";
-import Card from "../shared/components/UIElements/Card";
+// import Card from "../shared/components/UIElements/Card";
+import Card from "@mui/material/Card";
 import useHttpClient from "../shared/hooks/http-hook";
 import AuthContext from "../shared/contexts/auth-context";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";

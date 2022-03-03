@@ -3,7 +3,8 @@ import { useHistory } from "react-router-dom";
 import { useParams } from "react-router";
 import Input from "../shared/components/FormElements/Input";
 import Button from "../shared/components/FormElements/Button";
-import Card from "../shared/components/UIElements/Card";
+// import Card from "../shared/components/UIElements/Card";
+import Card from "@mui/material/Card";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,

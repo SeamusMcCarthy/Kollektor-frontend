@@ -9,7 +9,8 @@ import {
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import { useForm } from "../shared/hooks/form-hook";
-import Card from "../shared/components/UIElements/Card";
+// import Card from "../shared/components/UIElements/Card";
+import Card from "@mui/material/Card";
 import "./Auth.css";
 import AuthContext from "../shared/contexts/auth-context";
 import useHttpClient from "../shared/hooks/http-hook";
@@ -100,7 +101,19 @@ function Auth() {
   return (
     <>
       <ErrorModal error={error} onClear={clearError} />
-      <Card className="authentication">
+      <Card
+        className="authentication"
+        sx={{
+          width: 9 / 10,
+          maxWidth: 400,
+          m: 11.2,
+          mx: "auto",
+          textAlign: "center",
+          padding: 1.6,
+          boxShadow: 2,
+          borderRadius: 6,
+        }}
+      >
         {isLoading && <LoadingSpinner asOverlay />}
         <h2>Login Required</h2>
         <hr />

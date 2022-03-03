@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import EntriesList from "./EntriesList";
-import Card from "../shared/components/UIElements/Card";
+// import Card from "../shared/components/UIElements/Card";
+import Card from "@mui/material/Card";
 import "./Search.css";
 import Grid from "@mui/material/Grid";
 import Button from "../shared/components/FormElements/Button";
