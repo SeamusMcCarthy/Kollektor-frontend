@@ -23,7 +23,6 @@ const UserItem = (props) => {
             <h3>
               {props.entryCount} {props.entryCount === 1 ? "Entry" : "Entries"}
             </h3>
-            {/* <p>{props.description}</p> */}
           </div>
         </Link>
       </Card>

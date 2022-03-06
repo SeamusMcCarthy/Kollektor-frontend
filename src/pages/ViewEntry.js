@@ -8,6 +8,9 @@ import EntryItemDetail from "../components/EntryItemDetail";
 import Comments from "../components/Comments";
 import AuthContext from "../shared/contexts/auth-context";
 import { useHistory } from "react-router-dom";
+import Card from "@mui/material/Card";
+import Grid from "@mui/material/Grid";
+import Header from "../components/Header";
 
 const ViewEntry = () => {
   const auth = useContext(AuthContext);
@@ -40,25 +43,42 @@ const ViewEntry = () => {
         </div>
       )}
       {!isLoading && loadedEntry && (
-        <>
-          <EntryItemDetail
-            key={loadedEntry.id}
-            id={loadedEntry.id}
-            image={loadedEntry.image}
-            name={loadedEntry.name}
-            title={loadedEntry.title}
-            description={loadedEntry.description}
-            address={loadedEntry.address}
-            creatorId={loadedEntry.creator}
-            coordinates={loadedEntry.location}
-            onDelete={entryDeleteHandler}
-          />
-          <Comments
-            currentUserId={auth.userId}
-            comments={loadedEntry.comments}
-            entryId={entryId}
-          />
-        </>
+        <Grid container sx={{ padding: "20px" }}>
+          <Grid item xs={12}>
+            <Header title="View Entry" />
+          </Grid>
+          <ErrorModal error={error} onClear={clearError} />
+          <Card
+            sx={{
+              width: 9 / 10,
+              maxWidth: 800,
+              m: 3,
+              mx: "auto",
+              textAlign: "center",
+              padding: 1.6,
+              boxShadow: 2,
+              borderRadius: 6,
+            }}
+          >
+            <EntryItemDetail
+              key={loadedEntry.id}
+              id={loadedEntry.id}
+              image={loadedEntry.image}
+              name={loadedEntry.name}
+              title={loadedEntry.title}
+              description={loadedEntry.description}
+              address={loadedEntry.address}
+              creatorId={loadedEntry.creator}
+              coordinates={loadedEntry.location}
+              onDelete={entryDeleteHandler}
+            />
+            <Comments
+              currentUserId={auth.userId}
+              comments={loadedEntry.comments}
+              entryId={entryId}
+            />
+          </Card>
+        </Grid>
       )}
     </>
   );

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import EntriesList from "./EntriesList";
-// import Card from "../shared/components/UIElements/Card";
 import Card from "@mui/material/Card";
 import "./Search.css";
 import Grid from "@mui/material/Grid";
-import Button from "../shared/components/FormElements/Button";
 
 const Search = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,8 +14,6 @@ const Search = (props) => {
       entry.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
   });
-
-  const history = useHistory();
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -43,9 +39,8 @@ const Search = (props) => {
             />
           </Card>
         </Grid>
-        <Grid key="find" item xs={12} sm={6} md={8} lg={8} xl={8}>
+        <Grid item xs={12} sm={6} md={8} lg={8} xl={8}>
           <EntriesList items={filteredEntries} />
-          <Button onClick={history.goBack}>BACK</Button>
         </Grid>
       </Grid>
     </Grid>

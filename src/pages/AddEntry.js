@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Input from "../shared/components/FormElements/Input";
 import Button from "../shared/components/FormElements/Button";
 import {
@@ -7,7 +7,6 @@ import {
 } from "../shared/util/validators";
 import "./EntryForm.css";
 import { useForm } from "../shared/hooks/form-hook";
-// import Card from "../shared/components/UIElements/Card";
 import Card from "@mui/material/Card";
 import useHttpClient from "../shared/hooks/http-hook";
 import AuthContext from "../shared/contexts/auth-context";
@@ -15,11 +14,14 @@ import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import { useHistory } from "react-router-dom";
 import ImageUpload from "../shared/components/FormElements/ImageUpload";
+import Grid from "@mui/material/Grid";
+import Header from "../components/Header";
 
 const AddEntry = () => {
   document.title = "New Entry";
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const [loadedCategories, setLoadedCategories] = useState([]);
   const [formState, inputHandler] = useForm(
     {
       title: {
@@ -46,8 +48,21 @@ const AddEntry = () => {
     false
   );
 
-  const history = useHistory();
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const responseData = await sendRequest(
+          "http://localhost:5000/api/v1/cat"
+        );
+        setLoadedCategories(responseData.categories);
+      } catch (e) {
+        console.log(e.message);
+      }
+    }
+    fetchCategories();
+  }, [sendRequest]);
 
+  const history = useHistory();
   async function entrySubmitHandler(event) {
     event.preventDefault();
     const formData = new FormData();
@@ -56,9 +71,9 @@ const AddEntry = () => {
     formData.append("address", formState.inputs.address.value);
     formData.append("creator", auth.userId);
     formData.append("image", formState.inputs.image.value);
-    for (var key of formData.entries()) {
-      console.log(key[0] + ", " + key[1]);
-    }
+    // for (var key of formData.entries()) {
+    //   console.log(key[0] + ", " + key[1]);
+    // }
     formData.append("category", formState.inputs.category.value);
     try {
       await sendRequest(
@@ -74,13 +89,27 @@ const AddEntry = () => {
   }
 
   return (
-    <>
+    <Grid container sx={{ padding: "20px" }}>
+      <Grid item xs={12}>
+        <Header title="Add Entry" />
+      </Grid>
       <ErrorModal error={error} onClear={clearError} />
-      <Card className="entry-form">
+      <Card
+        sx={{
+          width: 9 / 10,
+          maxWidth: 800,
+          m: 3,
+          mx: "auto",
+          textAlign: "center",
+          padding: 1.6,
+          boxShadow: 2,
+          borderRadius: 6,
+        }}
+      >
         <h2>Add a new entry</h2>
         <hr />
         <form onSubmit={entrySubmitHandler}>
-          {isLoading && <LoadingSpinner asOverlay />}
+          {isLoading || (!loadedCategories && <LoadingSpinner asOverlay />)}
           <Input
             id="title"
             element="input"
@@ -120,6 +149,7 @@ const AddEntry = () => {
             onInput={inputHandler}
             label="Category"
             validators={[VALIDATOR_REQUIRE()]}
+            list={loadedCategories}
           />
 
           <Button type="submit" disabled={!formState.isValid}>
@@ -127,7 +157,7 @@ const AddEntry = () => {
           </Button>
         </form>
       </Card>
-    </>
+    </Grid>
   );
 };
 

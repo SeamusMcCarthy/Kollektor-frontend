@@ -14,24 +14,25 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
   const rootComments = backendComments.filter(
     (backendComment) => backendComment.parentId === null
   );
-
+  console.log(rootComments);
   const getReplies = (commentId) =>
     backendComments
       .filter((backendComment) => backendComment.parentId === commentId)
       .sort(
         (a, b) =>
-          // new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
           new Date(a.dateAdded).getTime() - new Date(b.dataAdded).getTime()
       );
 
-  const addComment = async (text, parentId = null) => {
+  const addComment = async (text, parentId) => {
     try {
+      const pId = parentId ? parentId : null;
+      console.log("ParentID : " + pId);
       const responseData = await sendRequest(
         `http://localhost:5000/api/v1/comment/${entryId}`,
         "POST",
         JSON.stringify({
           body: text,
-          parentId,
+          parentId: pId,
           creator: auth.userId,
           dateAdded: new Date().toISOString(),
         }),
@@ -101,15 +102,16 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
       <div className="comments-container">
         {rootComments.map((rootComment) => (
           <Comment
-            key={rootComment.id}
+            key={rootComment._id}
             comment={rootComment}
-            replies={getReplies(rootComment.id)}
+            replies={getReplies(rootComment._id)}
             activeComment={activeComment}
             setActiveComment={setActiveComment}
             addComment={addComment}
             deleteComment={deleteComment}
             updateComment={updateComment}
             currentUserId={auth.userId}
+            parentId={null}
             entryId={entryId}
           />
         ))}

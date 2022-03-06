@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { withRouter } from "react-router-dom";
-// import EntriesList from "../components/EntriesList";
 import "./Entries.css";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import useHttpClient from "../shared/hooks/http-hook";
 import Search from "../components/Search";
+import Grid from "@mui/material/Grid";
+import Header from "../components/Header";
 
 const UserEntries = (props) => {
   document.title = "User Entries";
@@ -29,16 +30,11 @@ const UserEntries = (props) => {
     fetchEntries();
   }, [sendRequest, userId]);
 
-  // return (
-  //   <div className="grid-container">
-  //     <div className="grid-child">
-  //       <EntriesList items={loadedEntries} />;
-  //     </div>
-  //   </div>
-  // );
-
   return (
-    <>
+    <Grid container sx={{ padding: "20px" }}>
+      <Grid item xs={12}>
+        <Header title="User Entries" />
+      </Grid>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && (
         <div className="center">
@@ -47,7 +43,7 @@ const UserEntries = (props) => {
       )}
       {/* {!isLoading && loadedEntries && <EntriesList items={loadedEntries} />} */}
       {!isLoading && loadedEntries && <Search items={loadedEntries} />}
-    </>
+    </Grid>
   );
 };
 

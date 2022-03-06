@@ -10,13 +10,13 @@ import {
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import { useForm } from "../shared/hooks/form-hook";
-// import Card from "../shared/components/UIElements/Card";
 import Card from "@mui/material/Card";
-import "./Auth.css";
 import AuthContext from "../shared/contexts/auth-context";
 import useHttpClient from "../shared/hooks/http-hook";
 import { useHistory } from "react-router-dom";
 // import ImageUpload from "../shared/components/FormElements/ImageUpload";
+import Grid from "@mui/material/Grid";
+import Header from "../components/Header";
 
 function UpdateProfile() {
   document.title = "Update Profile";
@@ -117,11 +117,25 @@ function UpdateProfile() {
   }
 
   return (
-    <>
+    <Grid container sx={{ padding: "20px" }}>
+      <Grid item xs={12}>
+        <Header title="Update Profile" />
+      </Grid>
       <ErrorModal error={error} onClear={clearError} />
-      <Card className="authentication">
+      <Card
+        sx={{
+          width: 9 / 10,
+          maxWidth: 400,
+          m: 11.2,
+          mx: "auto",
+          textAlign: "center",
+          padding: 1.6,
+          boxShadow: 2,
+          borderRadius: 6,
+        }}
+      >
         {isLoading && <LoadingSpinner asOverlay />}
-        <h2>Edit Profile</h2>
+        <h2>Update Profile</h2>
         <hr />
         <form onSubmit={userUpdateSubmitHandler}>
           <Input
@@ -179,7 +193,7 @@ function UpdateProfile() {
           </Button>
         </form>
       </Card>
-    </>
+    </Grid>
   );
 }
 

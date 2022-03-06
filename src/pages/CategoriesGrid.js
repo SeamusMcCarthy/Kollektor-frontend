@@ -9,14 +9,7 @@ import CategoriesList from "../components/CategoriesList";
 import Grid from "@mui/material/Grid";
 import Header from "../components/Header";
 
-// const useStyles = makeStyles({
-//   root: {
-//     padding: "20px",
-//   },
-// });
-
 const Categories = () => {
-  // const classes = useStyles();
   document.title = "Categories";
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedCategories, setLoadedCategories] = useState();

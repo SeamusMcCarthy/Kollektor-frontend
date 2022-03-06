@@ -6,6 +6,9 @@ import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import UsersList from "../components/UsersList";
 
+import Grid from "@mui/material/Grid";
+import Header from "../components/Header";
+
 const Users = () => {
   document.title = "Users";
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -26,7 +29,10 @@ const Users = () => {
   }, [sendRequest]);
 
   return (
-    <>
+    <Grid container sx={{ padding: "20px" }}>
+      <Grid item xs={12}>
+        <Header title="Users" />
+      </Grid>
       <ErrorModal error={error} asOverlay onClear={clearError} />
       {isLoading && (
         <div className="center">
@@ -34,7 +40,7 @@ const Users = () => {
         </div>
       )}
       {!isLoading && loadedUsers && <UsersList items={loadedUsers} />}
-    </>
+    </Grid>
   );
 };
 

@@ -20,8 +20,6 @@ import ViewEntry from "./pages/ViewEntry";
 import UpdateEntry from "./pages/UpdateEntry";
 import UpdateProfile from "./pages/UpdateProfile";
 
-// import Container from "@mui/material/Container";
-
 function App() {
   const { token, login, logout, userId } = useAuth();
   let routes;
@@ -30,7 +28,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Categories} />
         <Route exact path="/category/:catId" component={CategoryEntries} />
-        <Route exact path="/users" conponent={Users} />
+        <Route exact path="/users" component={Users} />
         <Route exact path="/user/:userId" component={UserEntries} />
         <Route exact path="/new" component={AddEntry} />
         <Route exact path="/profile/:uid" component={UpdateProfile} />

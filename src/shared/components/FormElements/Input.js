@@ -91,6 +91,7 @@ function Input(props) {
       );
       break;
     case "select":
+      // console.log("list : " + props.list[0].title);
       element = (
         <select
           id={props.id}
@@ -101,9 +102,13 @@ function Input(props) {
           <option value="" disabled>
             Select your option
           </option>
-          <option value="guitar">Guitar</option>
+          )
+          {props.list.map((entry) => (
+            <option value={entry.title.toLowerCase()}>{entry.title}</option>
+          ))}
+          {/* <option value="guitar">Guitar</option>
           <option value="bass">Bass</option>
-          <option value="fx">FX</option>
+          <option value="fx">FX</option> */}
         </select>
       );
       break;

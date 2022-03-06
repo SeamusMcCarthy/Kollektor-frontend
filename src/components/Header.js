@@ -1,24 +1,13 @@
 import React from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-// import { makeStyles } from "@mui/core/styles";
+import { withRouter } from "react-router-dom";
+
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { withRouter } from "react-router-dom";
-// import { createTheme } from "@mui/system";
-
-// const theme = createTheme({
-//   root: {
-// display: "flex",
-// justifyContent: "space-around",
-// flexWrap: "wrap",
-// marginBottom: theme.spacing(1.5),
-//   },
-// });
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const Header = ({ title, history }) => {
-  //   const classes = useStyles();
   return (
     <Paper
       component="div"
