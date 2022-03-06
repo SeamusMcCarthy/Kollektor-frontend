@@ -1,5 +1,6 @@
 .search {
-  width: 90%;
+  /* height: 20rem; */
+  width: 100%;
   max-width: 25rem;
   margin: 3rem auto;
   text-align: center;
@@ -22,6 +23,11 @@
   border: 1px solid #ccc;
   background: #f8f8f8;
   padding: 0.15rem 0.25rem;
+}
+
+.search img {
+  width: 100%;
+  margin-top: 2%;
 }
 
 .left {

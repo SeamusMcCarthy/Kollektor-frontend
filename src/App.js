@@ -7,7 +7,7 @@ import {
   Switch,
 } from "react-router-dom";
 // import SiteHeader from "./components/SiteHeader";
-import Categories from "./pages/Categories";
+import Categories from "./pages/CategoriesGrid";
 import Users from "./pages/Users";
 import Auth from "./pages/Auth";
 import AuthContext from "./shared/contexts/auth-context";
@@ -17,6 +17,8 @@ import CategoryEntries from "./pages/CategoryEntries";
 import UserEntries from "./pages/UserEntries";
 import AddEntry from "./pages/AddEntry";
 import ViewEntry from "./pages/ViewEntry";
+import UpdateEntry from "./pages/UpdateEntry";
+import UpdateProfile from "./pages/UpdateProfile";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -24,53 +26,27 @@ function App() {
   if (token) {
     routes = (
       <Switch>
-        <Route path="/" exact>
-          <Categories />
-        </Route>
-        <Route path="/category/:catId" exact>
-          <CategoryEntries />
-        </Route>
-        <Route path="/users" exact>
-          <Users />
-        </Route>
-        <Route path="/user/:userId" exact>
-          <UserEntries />
-        </Route>
-        <Route path="/new" exact>
-          <AddEntry />
-        </Route>
-        <Route path="/profile" exact>
-          <Users />
-        </Route>
-        <Route path="/entry/:eid" exact>
-          <ViewEntry />
-        </Route>
-
-        <Redirect to="/" />
+        <Route exact path="/" component={Categories} />
+        <Route exact path="/category/:catId" component={CategoryEntries} />
+        <Route exact path="/users" component={Users} />
+        <Route exact path="/user/:userId" component={UserEntries} />
+        <Route exact path="/new" component={AddEntry} />
+        <Route exact path="/profile/:uid" component={UpdateProfile} />
+        <Route exact path="/entry/:eid" component={ViewEntry} />
+        <Route exact path="/entries/:eid" component={UpdateEntry} />
+        <Redirect from="*" to="/" />
       </Switch>
     );
   } else {
     routes = (
       <Switch>
-        <Route path="/" exact>
-          <Categories />
-        </Route>
-        <Route path="/category/:catId" exact>
-          <CategoryEntries />
-        </Route>
-        <Route path="/users" exact>
-          <Users />
-        </Route>
-        <Route path="/user/:userId" exact>
-          <UserEntries />
-        </Route>
-        <Route path="/auth" exact>
-          <Auth />
-        </Route>
-        <Route path="/entry/:eid" exact>
-          <ViewEntry />
-        </Route>
-        <Redirect to="/auth" />
+        <Route exact path="/" component={Categories} />
+        <Route exact path="/category/:catId" component={CategoryEntries} />
+        <Route exact path="/users" component={Users} />
+        <Route exact path="/user/:userId" component={UserEntries} />
+        <Route exact path="/entry/:eid" component={ViewEntry} />
+        <Route exact path="/auth" component={Auth} />
+        <Redirect from="*" to="/auth" />
       </Switch>
     );
   }
@@ -87,7 +63,7 @@ function App() {
     >
       <Router>
         <MainNavigation />
-        <main>{routes}</main>
+        {routes}
       </Router>
     </AuthContext.Provider>
   );

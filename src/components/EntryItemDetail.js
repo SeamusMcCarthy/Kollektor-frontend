@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import Card from "../shared/components/UIElements/Card";
+// import Card from "../shared/components/UIElements/Card";
+import Card from "@mui/material/Card";
 import Button from "../shared/components/FormElements/Button";
 import Modal from "../shared/components/UIElements/Modal";
 import Map from "../shared/components/UIElements/Map";
@@ -70,15 +71,25 @@ const EntryItemDetail = (props) => {
           can't be undone thereafter.
         </p>
       </Modal>
-      <li className="place-item">
+      <div className="place-item">
         <Card className="place-item__content">
           {isLoading && <LoadingSpinner asOverlay />}
-          <div className="place-item__image">
+          {/* <div className="place-item__image">
             <img
               src={`http://localhost:5000/${props.image}`}
               alt={props.title}
             />
+          </div> */}
+
+          <div className={"image-upload center"}>
+            <div className="image-upload__preview">
+              <img
+                src={`http://localhost:5000/${props.image}`}
+                alt={props.title}
+              />
+            </div>
           </div>
+
           <div className="place-item__info">
             <h2>{props.title}</h2>
             <h3>{props.address}</h3>
@@ -89,7 +100,7 @@ const EntryItemDetail = (props) => {
               VIEW ON MAP
             </Button>
             {auth.userId === props.creatorId && (
-              <Button to={`/places/${props.id}`}>EDIT</Button>
+              <Button to={`/entries/${props.id}`}>EDIT</Button>
             )}
             {auth.userId === props.creatorId && (
               <Button danger onClick={showDeleteWarningHandler}>
@@ -98,7 +109,7 @@ const EntryItemDetail = (props) => {
             )}
           </div>
         </Card>
-      </li>
+      </div>
     </>
   );
 };

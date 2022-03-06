@@ -9,13 +9,13 @@ import {
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import { useForm } from "../shared/hooks/form-hook";
-import Card from "../shared/components/UIElements/Card";
-import "./Auth.css";
+import Card from "@mui/material/Card";
 import AuthContext from "../shared/contexts/auth-context";
 import useHttpClient from "../shared/hooks/http-hook";
 import ImageUpload from "../shared/components/FormElements/ImageUpload";
 
 function Auth() {
+  document.title = "Sign Up / Sign In";
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
 
@@ -99,11 +99,22 @@ function Auth() {
   return (
     <>
       <ErrorModal error={error} onClear={clearError} />
-      <Card className="authentication">
+      <Card
+        sx={{
+          width: 9 / 10,
+          maxWidth: 400,
+          m: 11.2,
+          mx: "auto",
+          textAlign: "center",
+          padding: 1.6,
+          boxShadow: 2,
+          borderRadius: 6,
+        }}
+      >
         {isLoading && <LoadingSpinner asOverlay />}
         <h2>Login Required</h2>
         <hr />
-        <form onSubmit={authSubmitHandler}>
+        <form onSubmit={authSubmitHandler} style={{ marginBottom: 16 }}>
           {!isLoginMode && (
             <Input
               element="input"

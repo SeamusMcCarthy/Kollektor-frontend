@@ -4,34 +4,34 @@ import useHttpClient from "../shared/hooks/http-hook";
 
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
-import UsersList from "../components/UsersList";
+import CategoriesList from "../components/CategoriesList";
 
 import Grid from "@mui/material/Grid";
 import Header from "../components/Header";
 
-const Users = () => {
-  document.title = "Users";
+const Categories = () => {
+  document.title = "Categories";
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-  const [loadedUsers, setLoadedUsers] = useState();
+  const [loadedCategories, setLoadedCategories] = useState();
 
   useEffect(() => {
-    async function fetchUsers() {
+    async function fetchCategories() {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/v1/user"
+          "http://localhost:5000/api/v1/cat"
         );
-        setLoadedUsers(responseData.users);
+        setLoadedCategories(responseData.categories);
       } catch (e) {
         console.log(e.message);
       }
     }
-    fetchUsers();
+    fetchCategories();
   }, [sendRequest]);
 
   return (
     <Grid container sx={{ padding: "20px" }}>
       <Grid item xs={12}>
-        <Header title="Users" />
+        <Header title="Categories" />
       </Grid>
       <ErrorModal error={error} asOverlay onClear={clearError} />
       {isLoading && (
@@ -39,9 +39,11 @@ const Users = () => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && loadedUsers && <UsersList items={loadedUsers} />}
+      {!isLoading && loadedCategories && (
+        <CategoriesList items={loadedCategories} />
+      )}
     </Grid>
   );
 };
 
-export default withRouter(Users);
+export default withRouter(Categories);

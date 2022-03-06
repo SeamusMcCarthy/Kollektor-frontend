@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { withRouter } from "react-router-dom";
-// import EntriesList from "../components/EntriesList";
 import "./Entries.css";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import useHttpClient from "../shared/hooks/http-hook";
 import Search from "../components/Search";
+import Header from "../components/Header";
+import Grid from "@mui/material/Grid";
 
 const CategoryEntries = (props) => {
+  document.title = "Category Entries";
   const catId = useParams().catId;
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedEntries, setLoadedEntries] = useState();
@@ -27,7 +29,10 @@ const CategoryEntries = (props) => {
     fetchEntries();
   }, [sendRequest, catId]);
   return (
-    <>
+    <Grid container sx={{ padding: "20px" }}>
+      <Grid item xs={12}>
+        <Header title="Category Entries" />
+      </Grid>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && (
         <div className="center">
@@ -36,7 +41,7 @@ const CategoryEntries = (props) => {
       )}
       {/* {!isLoading && loadedEntries && <EntriesList items={loadedEntries} />} */}
       {!isLoading && loadedEntries && <Search items={loadedEntries} />}
-    </>
+    </Grid>
   );
 };
 

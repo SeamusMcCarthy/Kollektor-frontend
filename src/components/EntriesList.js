@@ -1,6 +1,7 @@
 import React from "react";
 import EntryItem from "./EntryItem";
-import Card from "../shared/components/UIElements/Card";
+// import Card from "../shared/components/UIElements/Card";
+import Card from "@mui/material/Card";
 import "./EntriesList.css";
 
 const EntriesList = (props) => {

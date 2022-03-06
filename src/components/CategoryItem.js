@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Avatar from "../shared/components/UIElements/Avatar";
-import Card from "../shared/components/UIElements/Card";
+// import Avatar from "../shared/components/UIElements/Avatar";
+// import Card from "../shared/components/UIElements/Card";
+import Card from "@mui/material/Card";
+import Avatar from "@mui/material/Avatar";
 import "./Item.css";
 
 const CategoryItem = (props) => {
@@ -10,7 +12,11 @@ const CategoryItem = (props) => {
       <Card className="user-item__content">
         <Link to={`/category/${props.id}`}>
           <div className="user-item__image">
-            <Avatar image={props.image} alt={props.name} />
+            <Avatar
+              src={props.image}
+              alt={props.name}
+              sx={{ width: 60, height: 60 }}
+            />
           </div>
           <div className="user-item__info">
             <h2>{props.name}</h2>
