@@ -1,4 +1,3 @@
-// import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -6,7 +5,6 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-// import SiteHeader from "./components/SiteHeader";
 import Categories from "./pages/CategoriesGrid";
 import Users from "./pages/Users";
 import Auth from "./pages/Auth";
@@ -63,7 +61,7 @@ function App() {
     >
       <Router>
         <MainNavigation />
-        {routes}
+        <main>{routes}</main>
       </Router>
     </AuthContext.Provider>
   );

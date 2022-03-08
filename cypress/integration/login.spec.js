@@ -6,8 +6,6 @@ describe("Initial connectivity trial", () => {
   });
 
   it("Confirms we are on the homepage", () => {
-    // cy.injectAxe();
-    // cy.checkA11y();
     cy.findByRole("link", { name: /categories/i }).click();
     cy.findByRole("heading", { level: 2, name: /guitar/i }).click();
   });

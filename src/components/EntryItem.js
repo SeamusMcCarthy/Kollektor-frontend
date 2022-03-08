@@ -12,7 +12,7 @@ import "./Item.css";
 const EntryItem = (props) => {
   return (
     <Card sx={{ maxWidth: 450, marginTop: 2.5 }}>
-      <Link to={`/entry/${props.id}`}>
+      <Link to={`/entry/${props.id}`} style={{ textDecoration: "none" }}>
         <CardHeader
           // className={classes.header}
           avatar={
@@ -43,19 +43,6 @@ const EntryItem = (props) => {
             </Grid>
           </Grid>
         </CardContent>
-        {/* <CardActions>
-        {action(movie)}
-        <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            More Info ...
-          </Button>
-        </Link>
-        <Link to={`/movies/${movie.id}/cast`}>
-          <Button variant="outlined" size="medium" color="primary">
-            Cast
-          </Button>
-        </Link>
-      </CardActions> */}
       </Link>
     </Card>
   );
