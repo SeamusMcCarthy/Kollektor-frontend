@@ -1,31 +1,63 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import Avatar from "../shared/components/UIElements/Avatar";
-// import Card from "../shared/components/UIElements/Card";
 import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
 import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
 import "./Item.css";
 
 const EntryItem = (props) => {
   return (
-    <li className="user-item">
-      <Card className="user-item__content">
-        <Link to={`/entry/${props.id}`}>
-          <div className="user-item__image">
+    <Card sx={{ maxWidth: 450, marginTop: 2.5 }}>
+      <Link to={`/entry/${props.id}`}>
+        <CardHeader
+          // className={classes.header}
+          avatar={
             <Avatar
-              src={`http://localhost:5000/${props.image}`}
+              sx={{ backgroundColor: "rgb(255, 0, 0)" }}
+              src={`http://localhost:5000/${props.creatorImage}`}
               alt={props.name}
-              sx={{ width: 60, height: 60 }}
             />
-          </div>
-          <div className="user-item__info">
-            <h2>{props.title}</h2>
-            {/* <h3>{props.entryCount} {props.entryCount === 1 ? 'Entry' : 'Entries'}</h3> */}
-            <p>{props.description}</p>
-          </div>
+          }
+          title={
+            <Typography variant="h5" component="p">
+              {props.title}{" "}
+            </Typography>
+          }
+        />
+        <CardMedia
+          component="img"
+          sx={{ height: 500 }}
+          image={`http://localhost:5000/${props.image}`}
+        />
+        <CardContent>
+          <Grid container>
+            <Grid item xs={12}>
+              <Typography variant="h6" component="p">
+                {/* <CalendarIcon fontSize="small" /> */}
+                {props.description}
+              </Typography>
+            </Grid>
+          </Grid>
+        </CardContent>
+        {/* <CardActions>
+        {action(movie)}
+        <Link to={`/movies/${movie.id}`}>
+          <Button variant="outlined" size="medium" color="primary">
+            More Info ...
+          </Button>
         </Link>
-      </Card>
-    </li>
+        <Link to={`/movies/${movie.id}/cast`}>
+          <Button variant="outlined" size="medium" color="primary">
+            Cast
+          </Button>
+        </Link>
+      </CardActions> */}
+      </Link>
+    </Card>
   );
 };
 
