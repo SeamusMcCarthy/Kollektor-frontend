@@ -32,7 +32,7 @@ const ViewEntry = () => {
   }, [sendRequest, entryId]);
 
   function entryDeleteHandler() {
-    history.push("/" + auth.userId + "/places/");
+    history.push("/");
   }
   return (
     <>

@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-// import Card from "../shared/components/UIElements/Card";
 import Card from "@mui/material/Card";
 import Button from "../shared/components/FormElements/Button";
 import Modal from "../shared/components/UIElements/Modal";
 import Map from "../shared/components/UIElements/Map";
 import "./EntryItemDetail.css";
+import "../shared/components/FormElements/ImageUpload.css";
 import AuthContext from "../shared/contexts/auth-context";
 import useHttpClient from "../shared/hooks/http-hook";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
