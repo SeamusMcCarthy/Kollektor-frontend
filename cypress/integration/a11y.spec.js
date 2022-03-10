@@ -3,11 +3,12 @@
 describe("Initial a11y tests on logged out pages", () => {
   beforeEach(() => {
     cy.visit("/");
+    cy.injectAxe();
   });
 
-  it("A11y checks on the Categories homepage", () => {
+  it.only("A11y checks on the Categories homepage", () => {
     cy.findByRole("link", { name: /categories/i }).click();
-    cy.injectAxe();
+    cy.findByRole("heading", { name: /guitar/i });
     cy.checkA11y(
       {},
       {
@@ -20,13 +21,11 @@ describe("Initial a11y tests on logged out pages", () => {
 
   it("A11y checks on the Users homepage", () => {
     cy.findByRole("link", { name: /users/i }).click();
-    cy.injectAxe();
     cy.checkA11y();
   });
 
   it("A11y checks on the Authenticate homepage", () => {
     cy.findByRole("link", { name: /authenticate/i }).click();
-    cy.injectAxe();
     cy.checkA11y();
   });
 });

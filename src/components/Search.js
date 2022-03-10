@@ -7,7 +7,6 @@ import "./Search.css";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";
 const Img = styled("img")({});
-const Input = styled("input")({});
 
 const Search = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -30,19 +29,15 @@ const Search = (props) => {
           <Card className="search">
             <CardContent>
               <h2>Search</h2>
-              <Input
-                //   className="pa3 bb br3 grow b--none bg-lightest-blue ma3"
-                // sx={{ margin: 2 }}
+              <input
                 type="search"
                 placeholder="Search entries..."
                 onChange={handleChange}
               />
               <Img
-                // sx={{ margin: 2 }}
                 src="/images/site/Header_cropped2.jpg"
                 width="100%"
-                // height="150"
-                alt=""
+                alt="Search image"
               />
             </CardContent>
           </Card>

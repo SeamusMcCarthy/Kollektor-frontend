@@ -8,17 +8,17 @@ import "./Item.css";
 
 const CategoryItem = (props) => {
   return (
-    <li className="user-item">
-      <Card className="user-item__content">
+    <li className="cat-item">
+      <Card className="cat-item__content">
         <Link to={`/category/${props.id}`}>
-          <div className="user-item__image">
+          <div className="cat-item__image">
             <Avatar
               src={props.image}
               alt={props.name}
               sx={{ width: 60, height: 60 }}
             />
           </div>
-          <div className="user-item__info">
+          <div className="cat-item__info">
             <h2>{props.name}</h2>
             <h3>
               {props.entryCount} {props.entryCount === 1 ? "Entry" : "Entries"}

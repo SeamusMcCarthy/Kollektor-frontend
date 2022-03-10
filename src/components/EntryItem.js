@@ -19,7 +19,7 @@ const EntryItem = (props) => {
             <Avatar
               sx={{ backgroundColor: "rgb(255, 0, 0)" }}
               src={`http://localhost:5000/${props.creatorImage}`}
-              alt={props.name}
+              alt={props.creatorName}
             />
           }
           title={
@@ -32,6 +32,7 @@ const EntryItem = (props) => {
           component="img"
           sx={{ height: 500 }}
           image={`http://localhost:5000/${props.image}`}
+          alt={props.title}
         />
         <CardContent>
           <Grid container>

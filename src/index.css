@@ -10,7 +10,7 @@ html {
 
 body {
   margin: 0;
-  background: #4d4d4d;
+  background: #b6b7ba;
 }
 
 .slide-in-left-enter {
@@ -107,6 +107,7 @@ body {
 
 .comment-content {
   display: flex;
+  align-items: center;
 }
 
 .comment-author {
@@ -117,6 +118,7 @@ body {
 
 .comment-text {
   font-size: 18px;
+  text-align: left;
 }
 
 .comment-actions {
