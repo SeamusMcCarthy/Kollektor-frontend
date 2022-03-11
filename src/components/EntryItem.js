@@ -38,7 +38,6 @@ const EntryItem = (props) => {
           <Grid container>
             <Grid item xs={12}>
               <Typography variant="h6" component="p">
-                {/* <CalendarIcon fontSize="small" /> */}
                 {props.description}
               </Typography>
             </Grid>
