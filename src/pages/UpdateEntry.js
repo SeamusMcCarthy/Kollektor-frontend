@@ -15,6 +15,8 @@ import useHttpClient from "../shared/hooks/http-hook";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import AuthContext from "../shared/contexts/auth-context";
+import Grid from "@mui/material/Grid";
+import Header from "../components/Header";
 
 function UpdateEntry(props) {
   document.title = "Update Entry";
@@ -101,38 +103,58 @@ function UpdateEntry(props) {
   }
 
   return (
-    <>
+    <Grid container sx={{ padding: "20px" }}>
+      <Grid item xs={12}>
+        <Header title="Update Entry" />
+      </Grid>
       <ErrorModal error={error} onClear={clearError} />
-      {!isLoading && identifiedEntry && (
-        <form className="place-form" onSubmit={entryUpdateSubmitHandler}>
-          <Input
-            id="title"
-            element="input"
-            type="text"
-            label="Title"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a valid title"
-            onInput={inputHandler}
-            initialValue={identifiedEntry.title}
-            initialValid={true}
-          ></Input>
-          <Input
-            id="description"
-            element="textarea"
-            type="text"
-            label="Description"
-            validators={[VALIDATOR_MINLENGTH(5)]}
-            errorText="Please enter a valid description (min 5 characters)."
-            onInput={inputHandler}
-            initialValue={identifiedEntry.description}
-            initialValid={true}
-          ></Input>
-          <Button type="submit" disabled={!formState.isValid}>
-            UPDATE
-          </Button>
-        </form>
-      )}
-    </>
+      <Card
+        sx={{
+          width: 9 / 10,
+          maxWidth: 400,
+          m: 11.2,
+          mx: "auto",
+          textAlign: "center",
+          padding: 1.6,
+          boxShadow: 2,
+          borderRadius: 6,
+        }}
+      >
+        {!isLoading && identifiedEntry && (
+          <>
+            <h2>Update Entry</h2>
+            <hr />
+            <form className="place-form" onSubmit={entryUpdateSubmitHandler}>
+              <Input
+                id="title"
+                element="input"
+                type="text"
+                label="Title"
+                validators={[VALIDATOR_REQUIRE()]}
+                errorText="Please enter a valid title"
+                onInput={inputHandler}
+                initialValue={identifiedEntry.title}
+                initialValid={true}
+              ></Input>
+              <Input
+                id="description"
+                element="textarea"
+                type="text"
+                label="Description"
+                validators={[VALIDATOR_MINLENGTH(5)]}
+                errorText="Please enter a valid description (min 5 characters)."
+                onInput={inputHandler}
+                initialValue={identifiedEntry.description}
+                initialValid={true}
+              ></Input>
+              <Button type="submit" disabled={!formState.isValid}>
+                UPDATE
+              </Button>
+            </form>
+          </>
+        )}
+      </Card>
+    </Grid>
   );
 }
 

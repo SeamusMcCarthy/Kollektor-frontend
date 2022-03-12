@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid";
 const EntriesList = (props) => {
   if (props.items.length === 0) {
     return (
-      <div class-name="center">
+      <div className="center">
         <Card>
           <h2>No entries found!</h2>
         </Card>
