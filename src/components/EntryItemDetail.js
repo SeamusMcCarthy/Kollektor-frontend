@@ -42,8 +42,8 @@ const EntryItemDetail = (props) => {
         show={showMap}
         onCancel={closeMapHandler}
         header={props.address}
-        contentClass="place-item__modal-content"
-        footerClass="place-item__modal-actions"
+        contentClass="entry-item__modal-content"
+        footerClass="entry-item__modal-actions"
         footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
       >
         <div className="map-container">
@@ -54,7 +54,7 @@ const EntryItemDetail = (props) => {
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
         header="Are you sure?"
-        footerClass="place-item__modal-actions"
+        footerClass="entry-item__modal-actions"
         footer={
           <>
             <Button inverse onClick={cancelDeleteHandler}>
@@ -71,10 +71,10 @@ const EntryItemDetail = (props) => {
           can't be undone thereafter.
         </p>
       </Modal>
-      <div className="place-item">
-        <Card className="place-item__content">
+      <div className="entry-item">
+        <Card className="entry-item__content">
           {isLoading && <LoadingSpinner asOverlay />}
-          {/* <div className="place-item__image">
+          {/* <div className="entry-item__image">
             <img
               src={`http://localhost:5000/${props.image}`}
               alt={props.title}
@@ -90,12 +90,12 @@ const EntryItemDetail = (props) => {
             </div>
           </div>
 
-          <div className="place-item__info">
+          <div className="entry-item__info">
             <h2>{props.title}</h2>
             <h3>{props.address}</h3>
             <p>{props.description}</p>
           </div>
-          <div className="place-item__actions">
+          <div className="entry-item__actions">
             <Button inverse onClick={openMapHandler}>
               VIEW ON MAP
             </Button>

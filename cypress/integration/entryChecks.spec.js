@@ -1,6 +1,8 @@
 /// <reference types="cypress" />
 
 describe("Test entry interaction", () => {
+  const data = require("../credentials.json");
+
   beforeEach(() => {
     cy.viewport("macbook-16");
     cy.visit("/");
@@ -12,60 +14,152 @@ describe("Test entry interaction", () => {
     cy.get("main a").first().invoke("attr", "href").should("contain", "entry");
   });
 
-  it.only("Test login - valid details", () => {
-    cy.findByRole("link", { name: /authenticate/i }).click();
-    cy.findByRole("textbox", { name: /email/i }).type("seamus24@test.com");
-    cy.findByLabelText("Password").type("testtest");
+  it("Create entry - valid details", () => {
+    cy.findByRole("link", { name: /log in/i }).click();
+    cy.findByRole("textbox", { name: /email/i }).type(data.email);
+    cy.findByLabelText("Password").type(data.password);
     cy.findByRole("button", { name: /log in/i }).click();
     cy.findByRole("link", { name: /new entry/i }).click();
-    cy.findByRole("textbox", { name: /title/i }).type("Line 6 Helix");
-    cy.findByRole("textbox", { name: /description/i }).type(
-      "Powered by next-generation HXTM Modeling technology, the Helix family recreates amps, cabs, mics, and effects with accuracy and precision. Vintage and modern tube amp models give an authentic sound and feel, and are designed to interact with your playing like the originals."
-    );
-    cy.findByRole("textbox", { name: /address/i }).type("Limerick, Ireland");
+    cy.findByRole("textbox", { name: /title/i }).type(data.title);
+    cy.findByRole("textbox", { name: /description/i }).type(data.description);
+    cy.findByRole("textbox", { name: /address/i }).type(data.location);
     cy.findByRole("button", { name: /pick image/i }).click();
-    cy.get("input[type=file]").selectFile("/images/site/Micro_amp.jpg", {
+    cy.get("input[type=file]").selectFile(data.image, {
       force: true,
     });
     cy.get("select").select(1);
     cy.findByRole("button", { name: /add entry/i }).click();
     cy.findByRole("heading", { level: 2, name: /guitar/i }).click();
     cy.scrollTo("bottom");
-    cy.findAllByRole("link", { name: /line 6 helix/i }).last();
+    cy.findAllByText(data.title).last().should("be.visible");
   });
 
-  it("Test signup - valid details", () => {
-    cy.findByRole("link", { name: /authenticate/i }).click();
-    cy.findByRole("button", { name: /switch to sign up/i }).click();
-    const idNum = Math.floor(Math.random() * 100000);
-    cy.findByRole("textbox", { name: /name/i }).type("Test Account " + idNum);
-    cy.findByRole("button", { name: /pick image/i }).click();
-    cy.get("input[type=file]").selectFile("/images/site/Micro_amp.jpg", {
-      force: true,
-    });
-    cy.findByRole("textbox", { name: /email/i }).type(
-      "test_" + idNum + "@test.com"
-    );
-    cy.findByLabelText("Password").type("testtest");
-    cy.findByRole("textbox", { name: /address/i }).type("Limerick, Ireland");
-    cy.findByRole("button", { name: /sign up/i }).click();
-    cy.findByRole("button", { name: /logout/i }).should("exist");
+  it("Delete entry", () => {
+    cy.findByRole("link", { name: /log in/i }).click();
+    cy.findByRole("textbox", { name: /email/i }).type(data.email);
+    cy.findByLabelText("Password").type(data.password);
+    cy.findByRole("button", { name: /log in/i }).click();
+    cy.findByRole("link", { name: /my entries/i }).click();
+    cy.findAllByText(data.title).last().click();
+    cy.findByRole("heading", { name: /line 6 helix/i });
+    cy.findByRole("button", { name: /delete/i }).click();
+    cy.findAllByRole("button", { name: /delete/i })
+      .first()
+      .click();
+    cy.wait(500);
+    cy.findByRole("link", { name: /my entries/i }).click();
+    cy.findByRole("heading", { name: /search/i }).should("be.visible");
+    cy.contains(data.title).should("not.exist");
   });
 
-  it("Test signup - incomplete details", () => {
-    cy.findByRole("link", { name: /authenticate/i }).click();
-    cy.findByRole("button", { name: /switch to sign up/i }).click();
-    const idNum = Math.floor(Math.random() * 100000);
-    cy.findByRole("textbox", { name: /name/i }).type("Test Account " + idNum);
+  it("Create entry - invalid location", () => {
+    cy.findByRole("link", { name: /log in/i }).click();
+    cy.findByRole("textbox", { name: /email/i }).type(data.email);
+    cy.findByLabelText("Password").type(data.password);
+    cy.findByRole("button", { name: /log in/i }).click();
+    cy.findByRole("link", { name: /new entry/i }).click();
+    cy.findByRole("textbox", { name: /title/i }).type(data.title);
+    cy.findByRole("textbox", { name: /description/i }).type(data.description);
+    cy.findByRole("textbox", { name: /address/i }).type(data.invalidLocation);
     cy.findByRole("button", { name: /pick image/i }).click();
-    cy.get("input[type=file]").selectFile("/images/site/Micro_amp.jpg", {
+    cy.get("input[type=file]").selectFile(data.image, {
       force: true,
     });
-    cy.findByRole("textbox", { name: /email/i }).type(
-      "test_" + idNum + "@test.com"
-    );
+    cy.get("select").select(1);
+    cy.findByRole("button", { name: /add entry/i }).click();
+    cy.findByRole("heading", { name: /an error occurred!/i }).should("exist");
+  });
 
-    cy.findByRole("textbox", { name: /address/i }).type("Limerick, Ireland");
-    cy.findByRole("button", { name: /sign up/i }).should("be.disabled");
+  it("Create entry - incomplete details", () => {
+    cy.findByRole("link", { name: /log in/i }).click();
+    cy.findByRole("textbox", { name: /email/i }).type(data.email);
+    cy.findByLabelText("Password").type(data.password);
+    cy.findByRole("button", { name: /log in/i }).click();
+    cy.findByRole("link", { name: /new entry/i }).click();
+    cy.findByRole("textbox", { name: /title/i }).type(data.title);
+    cy.findByRole("textbox", { name: /description/i }).type(data.description);
+    // cy.findByRole("textbox", { name: /address/i }).type(data.location);
+    cy.findByRole("button", { name: /pick image/i }).click();
+    cy.get("input[type=file]").selectFile(data.image, {
+      force: true,
+    });
+    cy.get("select").select(1);
+    cy.findByRole("button", { name: /add entry/i }).should("be.disabled");
+  });
+
+  it("Create, check map, edit & delete entry", () => {
+    cy.findByRole("link", { name: /log in/i }).click();
+    cy.findByRole("textbox", { name: /email/i }).type(data.email);
+    cy.findByLabelText("Password").type(data.password);
+    cy.findByRole("button", { name: /log in/i }).click();
+    cy.findByRole("link", { name: /new entry/i }).click();
+    cy.findByRole("textbox", { name: /title/i }).type(data.title);
+    cy.findByRole("textbox", { name: /description/i }).type(data.description);
+    cy.findByRole("textbox", { name: /address/i }).type(data.location);
+    cy.findByRole("button", { name: /pick image/i }).click();
+    cy.get("input[type=file]").selectFile(data.image, {
+      force: true,
+    });
+    cy.get("select").select(1);
+    cy.findByRole("button", { name: /add entry/i }).click();
+    cy.findByRole("heading", { level: 2, name: /guitar/i }).click();
+    cy.scrollTo("bottom");
+    cy.findAllByText(data.title).last().should("be.visible");
+    cy.findAllByText(data.title).last().click();
+    cy.findByRole("button", { name: /view on map/i }).click();
+    // cy.findByRole("heading", { name: /cork, ireland/i }).should("be.visible");
+    cy.findByRole("button", { name: /close/i }).click();
+    cy.findByRole("link", { name: /edit/i }).click();
+    cy.findByRole("textbox", { name: /title/i }).type(" edited");
+    cy.findByRole("button", { name: /update/i }).click();
+    cy.findByRole("link", { name: /my entries/i }).click();
+    cy.findAllByText(data.title + " edited")
+      .last()
+      .click();
+    cy.findByRole("heading", { name: /line 6 helix edited/i });
+    cy.findByRole("button", { name: /delete/i }).click();
+    cy.findAllByRole("button", { name: /delete/i })
+      .first()
+      .click();
+    cy.wait(500);
+    cy.findByRole("link", { name: /my entries/i }).click();
+    cy.findByRole("heading", { name: /search/i }).should("be.visible");
+    cy.contains(data.title + " edited").should("not.exist");
+  });
+
+  it("Create entry, add comment/reply & delete entry", () => {
+    cy.findByRole("link", { name: /log in/i }).click();
+    cy.findByRole("textbox", { name: /email/i }).type(data.email);
+    cy.findByLabelText("Password").type(data.password);
+    cy.findByRole("button", { name: /log in/i }).click();
+    cy.findByRole("link", { name: /new entry/i }).click();
+    cy.findByRole("textbox", { name: /title/i }).type(data.title);
+    cy.findByRole("textbox", { name: /description/i }).type(data.description);
+    cy.findByRole("textbox", { name: /address/i }).type(data.location);
+    cy.findByRole("button", { name: /pick image/i }).click();
+    cy.get("input[type=file]").selectFile(data.image, {
+      force: true,
+    });
+    cy.get("select").select(1);
+    cy.findByRole("button", { name: /add entry/i }).click();
+    cy.findByRole("heading", { level: 2, name: /guitar/i }).click();
+    cy.scrollTo("bottom");
+    cy.findAllByText(data.title).last().should("be.visible");
+    cy.findAllByText(data.title).last().click();
+
+    cy.findByRole("textbox").type(data.comment);
+    cy.findByRole("button", { name: /write/i }).click();
+    cy.findByText("Reply").click();
+    cy.findAllByRole("textbox").last().type(data.reply);
+    cy.findByRole("button", { name: /reply/i }).click();
+
+    cy.findByRole("button", { name: /delete/i }).click();
+    cy.findAllByRole("button", { name: /delete/i })
+      .first()
+      .click();
+    cy.wait(500);
+    cy.findByRole("link", { name: /my entries/i }).click();
+    cy.findByRole("heading", { name: /search/i }).should("be.visible");
+    cy.contains(data.title + " edited").should("not.exist");
   });
 });

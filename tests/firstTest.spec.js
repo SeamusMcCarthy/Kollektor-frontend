@@ -14,7 +14,7 @@ test("Confirms we are on the homepage", async ({ page }) => {
 });
 
 test("Test login - invalid details", async ({ page }) => {
-  await page.locator("text=Authenticate").click();
+  await page.locator("text=log in").click();
   await page.locator("text=Email").fill("invalid@email.com");
   await page.locator("text=Password").type("invalid");
   await page.locator("text=Log in").click();
@@ -23,7 +23,7 @@ test("Test login - invalid details", async ({ page }) => {
 });
 
 test("Test login - valid details", async ({ page }) => {
-  await page.locator("text=Authenticate").click();
+  await page.locator("text=log in").click();
   await page.locator("text=Email").fill("test_dummy10@test.com");
   await page.locator("text=Password").fill("testtest");
   await page.locator("text=Log in").click();

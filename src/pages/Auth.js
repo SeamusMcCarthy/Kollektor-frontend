@@ -175,7 +175,7 @@ function Auth() {
             {isLoginMode ? "LOG IN" : "SIGN UP"}
           </Button>
         </form>
-        <Button inverse onClick={switchModeHandler}>
+        <Button onClick={switchModeHandler}>
           SWITCH TO {isLoginMode ? "SIGN UP" : "LOG IN"}
         </Button>
       </Card>

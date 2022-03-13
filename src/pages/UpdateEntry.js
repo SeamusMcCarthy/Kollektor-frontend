@@ -80,7 +80,7 @@ function UpdateEntry(props) {
           Authorization: "Bearer " + auth.token,
         }
       );
-      history.push("/" + auth.userId + "/entries/");
+      history.push("/user/" + auth.userId);
     } catch (e) {}
   }
 
@@ -124,7 +124,7 @@ function UpdateEntry(props) {
           <>
             <h2>Update Entry</h2>
             <hr />
-            <form className="place-form" onSubmit={entryUpdateSubmitHandler}>
+            <form className="entry-form" onSubmit={entryUpdateSubmitHandler}>
               <Input
                 id="title"
                 element="input"

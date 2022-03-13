@@ -15,13 +15,13 @@ const EntryItem = (props) => {
       <Link to={`/entry/${props.id}`} style={{ textDecoration: "none" }}>
         <CardHeader
           // className={classes.header}
-          avatar={
-            <Avatar
-              sx={{ backgroundColor: "rgb(255, 0, 0)" }}
-              src={`http://localhost:5000/${props.creatorImage}`}
-              alt={props.creatorName}
-            />
-          }
+          // avatar={
+          //   <Avatar
+          //     sx={{ backgroundColor: "rgb(255, 0, 0)" }}
+          //     src={`http://localhost:5000/${props.creatorImage}`}
+          //     alt={props.creatorName}
+          //   />
+          // }
           title={
             <Typography variant="h5" component="p">
               {props.title}{" "}
@@ -36,10 +36,23 @@ const EntryItem = (props) => {
         />
         <CardContent>
           <Grid container>
-            <Grid item xs={12}>
-              <Typography variant="h6" component="p">
+            <Grid container xs={12}>
+              {/* <Typography variant="h6" component="p">
                 {props.description}
-              </Typography>
+              </Typography> */}
+              <Grid item xs={2}>
+                <Avatar
+                  sx={{ backgroundColor: "rgb(255, 0, 0)" }}
+                  src={`http://localhost:5000/${props.creatorImage}`}
+                  alt={props.creatorName}
+                />
+              </Grid>
+
+              <Grid item xs={10}>
+                <Typography variant="body1" component="p">
+                  Added by : {props.creatorName}
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
         </CardContent>
