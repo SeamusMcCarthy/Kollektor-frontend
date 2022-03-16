@@ -27,6 +27,7 @@ const EntriesList = (props) => {
         description={entry.description}
         creatorImage={entry.creator.image}
         creatorName={entry.creator.name}
+        dateAdded={entry.dateAdded}
       />
     </Grid>
   ));

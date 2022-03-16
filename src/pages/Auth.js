@@ -37,7 +37,6 @@ function Auth() {
 
   async function authSubmitHandler(e) {
     e.preventDefault();
-    console.log(formState.inputs);
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(

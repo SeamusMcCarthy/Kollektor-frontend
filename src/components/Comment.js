@@ -21,20 +21,12 @@ const Comment = ({
     activeComment &&
     activeComment.id === comment._id &&
     activeComment.type === "replying";
-  const fiveMinutes = 300000;
-  const timePassed = new Date() - new Date(comment.dateAdded) > fiveMinutes;
+
   const canDelete =
-    // currentUserId === comment.creator.id && replies.length === 0 && timePassed;
     currentUserId === comment.creator._id && replies.length === 0;
   const canReply = Boolean(currentUserId);
-  // const canEdit = currentUserId === comment.creator.id && timePassed;
   const canEdit = currentUserId === comment.creator._id;
-  console.log(
-    "Just before ParentId check : " + comment.creator.id + " " + comment._id
-  );
-  console.log("Comment: ParentId = " + parentId + " " + comment._id);
   const replyId = parentId ? parentId : comment._id;
-  console.log("replyid : " + replyId);
   const dateAdded = new Date(comment.dateAdded).toLocaleDateString();
   return (
     <div key={comment._id} className="comment">

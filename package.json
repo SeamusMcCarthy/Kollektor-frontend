@@ -17,6 +17,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.0",
+    "react-share": "^4.4.0",
     "react-transition-group": "^4.4.2",
     "theme-ui": "^0.13.1",
     "web-vitals": "^2.1.2"

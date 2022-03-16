@@ -71,9 +71,7 @@ const AddEntry = () => {
     formData.append("address", formState.inputs.address.value);
     formData.append("creator", auth.userId);
     formData.append("image", formState.inputs.image.value);
-    // for (var key of formData.entries()) {
-    //   console.log(key[0] + ", " + key[1]);
-    // }
+
     formData.append("category", formState.inputs.category.value);
     try {
       await sendRequest(

@@ -14,7 +14,6 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
   const rootComments = backendComments.filter(
     (backendComment) => backendComment.parentId === null
   );
-  console.log(rootComments);
   const getReplies = (commentId) =>
     backendComments
       .filter((backendComment) => backendComment.parentId === commentId)
@@ -26,7 +25,6 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
   const addComment = async (text, parentId) => {
     try {
       const pId = parentId ? parentId : null;
-      console.log("ParentID : " + pId);
       const responseData = await sendRequest(
         `http://localhost:5000/api/v1/comment/${entryId}`,
         "POST",

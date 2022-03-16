@@ -30,7 +30,7 @@ describe("Test entry interaction", () => {
     cy.get("select").select(1);
     cy.findByRole("button", { name: /add entry/i }).click();
     cy.findByRole("heading", { level: 2, name: /guitar/i }).click();
-    cy.scrollTo("bottom");
+    cy.scrollTo("bottom", { ensureScrollable: false });
     cy.findAllByText(data.title).last().should("be.visible");
   });
 
@@ -103,7 +103,7 @@ describe("Test entry interaction", () => {
     cy.get("select").select(1);
     cy.findByRole("button", { name: /add entry/i }).click();
     cy.findByRole("heading", { level: 2, name: /guitar/i }).click();
-    cy.scrollTo("bottom");
+    cy.scrollTo("bottom", { ensureScrollable: false });
     cy.findAllByText(data.title).last().should("be.visible");
     cy.findAllByText(data.title).last().click();
     cy.findByRole("button", { name: /view on map/i }).click();
@@ -122,6 +122,7 @@ describe("Test entry interaction", () => {
       .first()
       .click();
     cy.wait(500);
+    cy.findByRole("link", { name: /categories/i });
     cy.findByRole("link", { name: /my entries/i }).click();
     cy.findByRole("heading", { name: /search/i }).should("be.visible");
     cy.contains(data.title + " edited").should("not.exist");
@@ -143,7 +144,7 @@ describe("Test entry interaction", () => {
     cy.get("select").select(1);
     cy.findByRole("button", { name: /add entry/i }).click();
     cy.findByRole("heading", { level: 2, name: /guitar/i }).click();
-    cy.scrollTo("bottom");
+    cy.scrollTo("bottom", { ensureScrollable: false });
     cy.findAllByText(data.title).last().should("be.visible");
     cy.findAllByText(data.title).last().click();
 

@@ -91,7 +91,6 @@ function Input(props) {
       );
       break;
     case "select":
-      // console.log("list : " + props.list[0].title);
       element = (
         <select
           id={props.id}

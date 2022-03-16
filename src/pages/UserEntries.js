@@ -12,7 +12,6 @@ import Header from "../components/Header";
 const UserEntries = (props) => {
   document.title = "User Entries";
   const userId = useParams().userId;
-  console.log("User : " + userId);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedEntries, setLoadedEntries] = useState();
 
