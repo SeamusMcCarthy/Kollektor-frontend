@@ -1,14 +1,17 @@
 import React, { useState, useContext } from "react";
-import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import { CardActions } from "@mui/material";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
 import Button from "../shared/components/FormElements/Button";
 import Modal from "../shared/components/UIElements/Modal";
 import Map from "../shared/components/UIElements/Map";
-import "./EntryItemDetail.css";
-import "../shared/components/FormElements/ImageUpload.css";
 import AuthContext from "../shared/contexts/auth-context";
 import useHttpClient from "../shared/hooks/http-hook";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
+import Share from "./Share";
+import "./EntryItemDetail.css";
 
 const EntryItemDetail = (props) => {
   const auth = useContext(AuthContext);
@@ -71,45 +74,43 @@ const EntryItemDetail = (props) => {
           can't be undone thereafter.
         </p>
       </Modal>
-      <div className="entry-item">
-        <Card className="entry-item__content">
-          {isLoading && <LoadingSpinner asOverlay />}
-          {/* <div className="entry-item__image">
-            <img
-              src={`http://localhost:5000/${props.image}`}
-              alt={props.title}
-            />
-          </div> */}
 
-          <div className={"image-upload center"}>
-            <div className="image-upload__preview">
-              <img
-                src={`http://localhost:5000/${props.image}`}
-                alt={props.title}
-              />
-            </div>
-          </div>
-
-          <div className="entry-item__info">
-            <h2>{props.title}</h2>
-            <h3>{props.address}</h3>
-            <p>{props.description}</p>
-          </div>
-          <div className="entry-item__actions">
-            <Button inverse onClick={openMapHandler}>
-              VIEW ON MAP
-            </Button>
-            {auth.userId === props.creatorId && (
-              <Button to={`/entries/${props.id}`}>EDIT</Button>
-            )}
-            {auth.userId === props.creatorId && (
-              <Button danger onClick={showDeleteWarningHandler}>
-                DELETE
-              </Button>
-            )}
-          </div>
-        </Card>
-      </div>
+      {/* <Card variant="outlined" sx={{mb: 2}}> */}
+      {isLoading && <LoadingSpinner asOverlay />}
+      <CardMedia
+        component="img"
+        sx={{ height: 600, mb: 2, width: "100%" }}
+        image={`http://localhost:5000/${props.image}`}
+        alt={props.title}
+      />
+      <CardContent sx={{ mb: 2, justifyItems: "left" }}>
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          Title: {props.title}
+        </Typography>
+        <Typography variant="h6" sx={{ mb: 2 }}>
+          Purchased at: {props.address}
+        </Typography>
+        <Typography variant="string" component="p" sx={{ mb: 2 }}>
+          Description: {props.description}
+        </Typography>
+      </CardContent>
+      <CardActions sx={{ justifyContent: "center" }}>
+        <Button inverse onClick={openMapHandler}>
+          VIEW ON MAP
+        </Button>
+        {auth.userId === props.creatorId && (
+          <Button to={`/entries/${props.id}`}>EDIT</Button>
+        )}
+        {auth.userId === props.creatorId && (
+          <Button danger onClick={showDeleteWarningHandler}>
+            DELETE
+          </Button>
+        )}
+      </CardActions>
+      <CardActions sx={{ justifyContent: "center" }}>
+        <Share />
+      </CardActions>
+      {/* </Card> */}
     </>
   );
 };

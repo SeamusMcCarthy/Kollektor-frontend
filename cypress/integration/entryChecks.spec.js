@@ -147,6 +147,7 @@ describe("Test entry interaction", () => {
     cy.scrollTo("bottom", { ensureScrollable: false });
     cy.findAllByText(data.title).last().should("be.visible");
     cy.findAllByText(data.title).last().click();
+    cy.findByRole("button", { name: /show more/i }).click();
 
     cy.findByRole("textbox").type(data.comment);
     cy.findByRole("button", { name: /write/i }).click();

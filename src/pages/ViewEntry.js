@@ -51,7 +51,7 @@ const ViewEntry = () => {
           <Card
             sx={{
               width: 9 / 10,
-              maxWidth: 800,
+              maxWidth: 1000,
               m: 3,
               mx: "auto",
               textAlign: "center",

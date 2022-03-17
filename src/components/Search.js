@@ -5,8 +5,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import "./Search.css";
 import Grid from "@mui/material/Grid";
-import { styled } from "@mui/material/styles";
-const Img = styled("img")({});
 
 const Search = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -34,10 +32,10 @@ const Search = (props) => {
                 placeholder="Search entries..."
                 onChange={handleChange}
               />
-              <Img
+              <img
                 src="/images/site/Header_cropped2.jpg"
                 width="100%"
-                alt="Search image"
+                alt="Search"
               />
             </CardContent>
           </Card>

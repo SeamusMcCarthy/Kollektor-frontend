@@ -1,13 +1,18 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
-
 import useHttpClient from "../shared/hooks/http-hook";
 import AuthContext from "../shared/contexts/auth-context";
+import { styled } from "@mui/material/styles";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import IconButton from "@mui/material/IconButton";
+import Collapse from "@mui/material/Collapse";
+import { Typography } from "@mui/material";
 
 const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
+  const [expanded, setExpanded] = React.useState(false);
   const auth = useContext(AuthContext);
   const { sendRequest } = useHttpClient();
 
@@ -58,7 +63,7 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
         }
       );
       const updatedBackendComments = backendComments.map((backendComment) => {
-        if (backendComment.id === commentId) {
+        if (backendComment._id === commentId) {
           return { ...backendComment, body: text };
         }
         return backendComment;
@@ -69,53 +74,79 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
   };
 
   const deleteComment = async (commentId) => {
-    if (window.confirm("Are you sure you want to remove comment?")) {
-      try {
-        await sendRequest(
-          `http://localhost:5000/api/v1/comment/${commentId}`,
-          "DELETE",
-          null,
-          {
-            Authorization: "Bearer " + auth.token,
-          }
-        );
-      } catch (e) {}
-
-      const updatedBackendComments = backendComments.filter(
-        (backendComment) => backendComment.id !== commentId
+    try {
+      await sendRequest(
+        `http://localhost:5000/api/v1/comment/${commentId}`,
+        "DELETE",
+        null,
+        {
+          Authorization: "Bearer " + auth.token,
+        }
       );
-      setBackendComments(updatedBackendComments);
-    }
+    } catch (e) {}
+
+    const updatedBackendComments = backendComments.filter(
+      (backendComment) => backendComment._id !== commentId
+    );
+    setBackendComments(updatedBackendComments);
   };
 
   useEffect(() => {
     setBackendComments(comments);
   }, [comments]);
 
+  const ExpandMore = styled((props) => {
+    const { expand, ...other } = props;
+    return <IconButton {...other} />;
+  })(({ theme, expand }) => ({
+    transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  }));
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
   return (
     <div className="comments">
-      <h3 className="comments-title">Comments</h3>
-      {auth.userId && <div className="comment-form-title">Write comment</div>}
-      {auth.userId && (
-        <CommentForm submitLabel="Write" handleSubmit={addComment} />
-      )}
-      <div className="comments-container">
-        {rootComments.map((rootComment) => (
-          <Comment
-            key={rootComment._id}
-            comment={rootComment}
-            replies={getReplies(rootComment._id)}
-            activeComment={activeComment}
-            setActiveComment={setActiveComment}
-            addComment={addComment}
-            deleteComment={deleteComment}
-            updateComment={updateComment}
-            currentUserId={auth.userId}
-            parentId={null}
-            entryId={entryId}
-          />
-        ))}
+      <div style={{ display: "flex" }}>
+        <Typography variant="h5">Comments</Typography>
+        <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </ExpandMore>
       </div>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        {auth.userId && <div className="comment-form-title">Write comment</div>}
+        {auth.userId && (
+          <CommentForm submitLabel="Write" handleSubmit={addComment} />
+        )}
+
+        <div className="comments-container">
+          {rootComments.map((rootComment) => (
+            <Comment
+              key={rootComment._id}
+              comment={rootComment}
+              replies={getReplies(rootComment._id)}
+              activeComment={activeComment}
+              setActiveComment={setActiveComment}
+              addComment={addComment}
+              deleteComment={deleteComment}
+              updateComment={updateComment}
+              currentUserId={auth.userId}
+              parentId={null}
+              entryId={entryId}
+            />
+          ))}
+        </div>
+      </Collapse>
     </div>
   );
 };
