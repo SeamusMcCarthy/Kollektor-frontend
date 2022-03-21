@@ -16,7 +16,7 @@ const EntryItem = (props) => {
           avatar={
             <Avatar
               aria-label="userAvatar"
-              src={`http://localhost:5000/${props.creatorImage}`}
+              src={props.creatorImage}
               alt={props.creatorName}
             />
           }
@@ -26,7 +26,7 @@ const EntryItem = (props) => {
         <CardMedia
           component="img"
           sx={{ height: 200 }}
-          image={`http://localhost:5000/${props.image}`}
+          image={props.image}
           alt={props.title}
         />
         <CardContent>

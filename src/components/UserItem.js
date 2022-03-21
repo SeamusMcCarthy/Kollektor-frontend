@@ -13,7 +13,7 @@ const UserItem = (props) => {
         <Link to={`/user/${props.id}`}>
           <div className="user-item__image">
             <Avatar
-              src={`http://localhost:5000/${props.image}`}
+              src={props.image}
               alt={props.name}
               sx={{ width: 60, height: 60 }}
             />

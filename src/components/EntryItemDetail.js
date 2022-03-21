@@ -80,7 +80,8 @@ const EntryItemDetail = (props) => {
       <CardMedia
         component="img"
         sx={{ height: 600, mb: 2, width: "100%" }}
-        image={`http://localhost:5000/${props.image}`}
+        // image={`http://localhost:5000/${props.image}`}
+        image={props.image}
         alt={props.title}
       />
       <CardContent sx={{ mb: 2, justifyItems: "left" }}>
