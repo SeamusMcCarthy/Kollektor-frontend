@@ -18,7 +18,7 @@ const Categories = () => {
     async function fetchCategories() {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/v1/cat"
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/cat`
         );
         setLoadedCategories(responseData.categories);
       } catch (e) {

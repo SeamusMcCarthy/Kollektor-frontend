@@ -52,7 +52,7 @@ const AddEntry = () => {
     async function fetchCategories() {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/v1/cat"
+          process.env.REACT_APP_BACKEND_URL + "/api/v1/cat"
         );
         setLoadedCategories(responseData.categories);
       } catch (e) {
@@ -75,7 +75,7 @@ const AddEntry = () => {
     formData.append("category", formState.inputs.category.value);
     try {
       await sendRequest(
-        "http://localhost:5000/api/v1/entry",
+        process.env.REACT_APP_BACKEND_URL + "/api/v1/entry",
         "POST",
         formData,
         {

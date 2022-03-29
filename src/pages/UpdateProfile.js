@@ -47,7 +47,7 @@ function UpdateProfile() {
     const fetchUser = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/v1/user/${userId}`
+          process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${userId}`
         );
         setIdentifiedUser(responseData.user);
         setFormData(
@@ -80,7 +80,7 @@ function UpdateProfile() {
     e.preventDefault();
     try {
       await sendRequest(
-        `http://localhost:5000/api/v1/user/${userId}`,
+        process.env.REACT_APP_BACKEND_URL + `/api/v1/user/${userId}`,
         "PATCH",
         JSON.stringify({
           email: formState.inputs.email.value,

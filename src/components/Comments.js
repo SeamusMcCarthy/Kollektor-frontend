@@ -31,7 +31,7 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
     try {
       const pId = parentId ? parentId : null;
       const responseData = await sendRequest(
-        `http://localhost:5000/api/v1/comment/${entryId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/comment/${entryId}`,
         "POST",
         JSON.stringify({
           body: text,
@@ -52,7 +52,7 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
   const updateComment = async (text, commentId) => {
     try {
       await sendRequest(
-        `http://localhost:5000/api/v1/comment/${commentId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/comment/${commentId}`,
         "PATCH",
         JSON.stringify({
           body: text,
@@ -76,7 +76,7 @@ const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
   const deleteComment = async (commentId) => {
     try {
       await sendRequest(
-        `http://localhost:5000/api/v1/comment/${commentId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/comment/${commentId}`,
         "DELETE",
         null,
         {

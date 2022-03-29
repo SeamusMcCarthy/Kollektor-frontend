@@ -44,7 +44,7 @@ function UpdateEntry(props) {
     const fetchEntry = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/v1/entry/${entryId}`
+          process.env.REACT_APP_BACKEND_URL + `/api/v1/entry/${entryId}`
         );
         setIdentifiedEntry(responseData.entry);
         setFormData(
@@ -69,7 +69,7 @@ function UpdateEntry(props) {
     e.preventDefault();
     try {
       await sendRequest(
-        `http://localhost:5000/api/v1/entry/${entryId}`,
+        process.env.REACT_APP_BACKEND_URL + `/api/v1/entry/${entryId}`,
         "PATCH",
         JSON.stringify({
           title: formState.inputs.title.value,

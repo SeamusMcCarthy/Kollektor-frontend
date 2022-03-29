@@ -19,7 +19,7 @@ const CategoryEntries = (props) => {
     async function fetchEntries() {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/v1/entry/cat/${catId}`
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/entry/cat/${catId}`
         );
         setLoadedEntries(responseData.entries);
       } catch (e) {

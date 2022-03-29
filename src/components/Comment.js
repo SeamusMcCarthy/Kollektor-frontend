@@ -66,7 +66,7 @@ const Comment = ({
       <div key={comment._id} className="comment">
         <div className="user-item__image">
           <Avatar
-            src={`http://localhost:5000/${comment.creator.image}`}
+            src={`${process.env.REACT_APP_BACKEND_URL}/${comment.creator.image}`}
             alt={comment.creator.name}
             sx={{ width: 60, height: 60 }}
           />

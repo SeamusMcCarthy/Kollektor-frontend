@@ -19,7 +19,7 @@ const UserEntries = (props) => {
     async function fetchEntries() {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/v1/entry/user/${userId}`
+          `${process.env.REACT_APP_BACKEND_URL}/api/v1/entry/user/${userId}`
         );
         setLoadedEntries(responseData.entries);
       } catch (e) {

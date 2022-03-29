@@ -27,7 +27,7 @@ const EntryItemDetail = (props) => {
     setShowConfirmModal(false);
     try {
       await sendRequest(
-        `http://localhost:5000/api/v1/entry/${props.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/entry/${props.id}`,
         "DELETE",
         null,
         {
@@ -80,7 +80,6 @@ const EntryItemDetail = (props) => {
       <CardMedia
         component="img"
         sx={{ height: 600, mb: 2, width: "100%" }}
-        // image={`http://localhost:5000/${props.image}`}
         image={props.image}
         alt={props.title}
       />
