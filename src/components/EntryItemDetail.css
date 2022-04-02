@@ -1,0 +1,61 @@
+.entry-item {
+  margin: 1rem 0;
+}
+
+.entry-item__content {
+  padding: 0;
+}
+
+.entry-item__info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.entry-item__image {
+  width: 80%;
+  height: 12.5rem;
+  /* margin-right: 1.5rem; */
+  align-items: center;
+}
+
+.entry-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.entry-item__info h2,
+.entry-item__info h3,
+.entry-item__info p {
+  margin: 0 0 0.5rem 0;
+}
+
+.entry-item__actions {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+.entry-item__modal-content {
+  padding: 0;
+}
+
+.entry-item__modal-actions {
+  text-align: right;
+}
+
+.entry-item__actions button,
+.entry-item__actions a {
+  margin: 0.5rem;
+}
+
+.map-container {
+  height: 16rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .entry-item__image {
+    height: 20rem;
+  }
+}
