@@ -32,6 +32,8 @@ describe("Test entry interaction", () => {
     cy.findByRole("heading", { level: 2, name: /guitar/i }).click();
     cy.scrollTo("bottom", { ensureScrollable: false });
     cy.findAllByText(data.title).last().should("be.visible");
+    cy.findByRole("searchbox").type(data.title);
+    cy.findAllByText(data.title).last().should("be.visible");
   });
 
   it("Delete entry", () => {
