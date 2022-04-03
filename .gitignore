@@ -26,3 +26,4 @@ test-results/
 playwright-report/
 cypress/videos/
 .env
+.firebase/hosting.YnVpbGQ.cache
