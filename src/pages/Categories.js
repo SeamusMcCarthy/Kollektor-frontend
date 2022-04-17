@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import useHttpClient from "../shared/hooks/http-hook";
 
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
+import useHttpClient from "../shared/hooks/http-hook";
+
 import CategoriesList from "../components/CategoriesList";
 
 const Categories = () => {

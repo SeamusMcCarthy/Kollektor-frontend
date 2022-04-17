@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import Avatar from "../shared/components/UIElements/Avatar";
-// import Card from "../shared/components/UIElements/Card";
 import Card from "@mui/material/Card";
 import Avatar from "@mui/material/Avatar";
+
 import "./Item.css";
 
 const CategoryItem = (props) => {

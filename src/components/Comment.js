@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import Avatar from "@mui/material/Avatar";
+
 import Modal from "../shared/components/UIElements/Modal";
 import Button from "../shared/components/FormElements/Button";
 import CommentForm from "./CommentForm";
-import Avatar from "@mui/material/Avatar";
 import "./Item.css";
 
 const Comment = ({
@@ -66,7 +67,7 @@ const Comment = ({
       <div key={comment._id} className="comment">
         <div className="user-item__image">
           <Avatar
-            src={`${process.env.REACT_APP_BACKEND_URL}/${comment.creator.image}`}
+            src={comment.creator.image}
             alt={comment.creator.name}
             sx={{ width: 60, height: 60 }}
           />
@@ -112,7 +113,6 @@ const Comment = ({
             {canDelete && (
               <div
                 className="comment-action"
-                // onClick={() => deleteComment(comment._id)}
                 onClick={showDeleteWarningHandler}
               >
                 Delete

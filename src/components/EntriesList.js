@@ -1,9 +1,9 @@
 import React from "react";
-import EntryItem from "./EntryItem";
-// import Card from "../shared/components/UIElements/Card";
-import Card from "@mui/material/Card";
-import "./EntriesList.css";
 import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+
+import EntryItem from "./EntryItem";
+import "./EntriesList.css";
 
 const EntriesList = (props) => {
   if (props.items.length === 0) {

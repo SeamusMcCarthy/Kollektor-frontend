@@ -3,13 +3,14 @@ import CardContent from "@mui/material/CardContent";
 import { CardActions } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+
 import Button from "../shared/components/FormElements/Button";
 import Modal from "../shared/components/UIElements/Modal";
 import Map from "../shared/components/UIElements/Map";
-import AuthContext from "../shared/contexts/auth-context";
-import useHttpClient from "../shared/hooks/http-hook";
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
+import AuthContext from "../shared/contexts/auth-context";
+import useHttpClient from "../shared/hooks/http-hook";
 import Share from "./Share";
 import "./EntryItemDetail.css";
 

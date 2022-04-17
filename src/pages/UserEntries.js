@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { withRouter } from "react-router-dom";
-import "./Entries.css";
+import Grid from "@mui/material/Grid";
+
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import useHttpClient from "../shared/hooks/http-hook";
+
 import Search from "../components/Search";
-import Grid from "@mui/material/Grid";
 import Header from "../components/Header";
+import "./Entries.css";
 
 const UserEntries = (props) => {
   document.title = "User Entries";
@@ -40,7 +42,6 @@ const UserEntries = (props) => {
           <LoadingSpinner asOverlay />
         </div>
       )}
-      {/* {!isLoading && loadedEntries && <EntriesList items={loadedEntries} />} */}
       {!isLoading && loadedEntries && <Search items={loadedEntries} />}
     </Grid>
   );

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import useHttpClient from "../shared/hooks/http-hook";
+import Grid from "@mui/material/Grid";
 
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
-import CategoriesList from "../components/CategoriesList";
+import useHttpClient from "../shared/hooks/http-hook";
 
-import Grid from "@mui/material/Grid";
+import CategoriesList from "../components/CategoriesList";
 import Header from "../components/Header";
 
 const Categories = () => {

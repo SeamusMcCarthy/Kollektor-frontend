@@ -1,21 +1,22 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
+import { useHistory } from "react-router-dom";
+import Card from "@mui/material/Card";
+import Grid from "@mui/material/Grid";
+
 import Input from "../shared/components/FormElements/Input";
 import Button from "../shared/components/FormElements/Button";
+import ErrorModal from "../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
+import AuthContext from "../shared/contexts/auth-context";
+import useHttpClient from "../shared/hooks/http-hook";
+import { useForm } from "../shared/hooks/form-hook";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../shared/util/validators";
-import ErrorModal from "../shared/components/UIElements/ErrorModal";
-import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
-import { useForm } from "../shared/hooks/form-hook";
-import Card from "@mui/material/Card";
-import AuthContext from "../shared/contexts/auth-context";
-import useHttpClient from "../shared/hooks/http-hook";
-import { useHistory } from "react-router-dom";
-// import ImageUpload from "../shared/components/FormElements/ImageUpload";
-import Grid from "@mui/material/Grid";
+
 import Header from "../components/Header";
 
 function UpdateProfile() {
@@ -93,7 +94,6 @@ function UpdateProfile() {
           Authorization: "Bearer " + auth.token,
         }
       );
-      // history.push("/" + auth.userId + "/entries/");
       history.push("/");
     } catch (e) {}
   }
@@ -149,12 +149,6 @@ function UpdateProfile() {
             initialValue={identifiedUser.name}
             initialValid={true}
           ></Input>
-          {/* <ImageUpload
-            id="image"
-            center
-            onInput={inputHandler}
-            errorText="Please provide an image."
-          /> */}
           <Input
             id="email"
             element="input"

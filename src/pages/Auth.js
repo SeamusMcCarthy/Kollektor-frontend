@@ -1,26 +1,25 @@
 import React, { useState, useContext } from "react";
+import Card from "@mui/material/Card";
+
 import Input from "../shared/components/FormElements/Input";
 import Button from "../shared/components/FormElements/Button";
+import ErrorModal from "../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
+import ImageUpload from "../shared/components/FormElements/ImageUpload";
+import AuthContext from "../shared/contexts/auth-context";
+import useHttpClient from "../shared/hooks/http-hook";
+import { useForm } from "../shared/hooks/form-hook";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../shared/util/validators";
-import ErrorModal from "../shared/components/UIElements/ErrorModal";
-import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
-import { useForm } from "../shared/hooks/form-hook";
-import Card from "@mui/material/Card";
-import AuthContext from "../shared/contexts/auth-context";
-import useHttpClient from "../shared/hooks/http-hook";
-import ImageUpload from "../shared/components/FormElements/ImageUpload";
 
 function Auth() {
   document.title = "Sign Up / Sign In";
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
-
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
   const [formState, inputHandler, setFormData] = useForm(
     {
       email: {

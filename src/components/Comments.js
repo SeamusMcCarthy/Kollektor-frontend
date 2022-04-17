@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import CommentForm from "./CommentForm";
-import Comment from "./Comment";
-import useHttpClient from "../shared/hooks/http-hook";
-import AuthContext from "../shared/contexts/auth-context";
 import { styled } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
 import { Typography } from "@mui/material";
+
+import useHttpClient from "../shared/hooks/http-hook";
+import AuthContext from "../shared/contexts/auth-context";
+import CommentForm from "./CommentForm";
+import Comment from "./Comment";
 
 const Comments = ({ commentsUrl, currentUserId, comments, entryId }) => {
   const [backendComments, setBackendComments] = useState([]);

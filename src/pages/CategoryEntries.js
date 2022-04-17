@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { withRouter } from "react-router-dom";
-import "./Entries.css";
+import Grid from "@mui/material/Grid";
+
 import ErrorModal from "../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
 import useHttpClient from "../shared/hooks/http-hook";
+
 import Search from "../components/Search";
 import Header from "../components/Header";
-import Grid from "@mui/material/Grid";
+import "./Entries.css";
 
 const CategoryEntries = (props) => {
   document.title = "Category Entries";

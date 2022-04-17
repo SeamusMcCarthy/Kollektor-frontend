@@ -48,7 +48,7 @@ describe("Test entry interaction", () => {
     cy.findAllByRole("button", { name: /delete/i })
       .first()
       .click();
-    cy.wait(500);
+    cy.wait(2000);
     cy.findByRole("link", { name: /my entries/i }).click();
     cy.findByRole("heading", { name: /search/i }).should("be.visible");
     cy.contains(data.title).should("not.exist");
@@ -109,11 +109,12 @@ describe("Test entry interaction", () => {
     cy.findAllByText(data.title).last().should("be.visible");
     cy.findAllByText(data.title).last().click();
     cy.findByRole("button", { name: /view on map/i }).click();
-    // cy.findByRole("heading", { name: /cork, ireland/i }).should("be.visible");
+
     cy.findByRole("button", { name: /close/i }).click();
     cy.findByRole("link", { name: /edit/i }).click();
     cy.findByRole("textbox", { name: /title/i }).type(" edited");
     cy.findByRole("button", { name: /update/i }).click();
+    cy.wait(2000);
     cy.findByRole("link", { name: /my entries/i }).click();
     cy.findAllByText(data.title + " edited")
       .last()
@@ -123,7 +124,7 @@ describe("Test entry interaction", () => {
     cy.findAllByRole("button", { name: /delete/i })
       .first()
       .click();
-    cy.wait(500);
+    cy.wait(2000);
     cy.findByRole("link", { name: /categories/i });
     cy.findByRole("link", { name: /my entries/i }).click();
     cy.findByRole("heading", { name: /search/i }).should("be.visible");
@@ -149,7 +150,7 @@ describe("Test entry interaction", () => {
     cy.scrollTo("bottom", { ensureScrollable: false });
     cy.findAllByText(data.title).last().should("be.visible");
     cy.findAllByText(data.title).last().click();
-    cy.scrollTo("bottom", { ensureScrollable: false });
+    cy.scrollTo("bottom");
     cy.findByRole("button", { name: /show more/i }).click();
 
     cy.findByRole("textbox").type(data.comment);
@@ -162,7 +163,7 @@ describe("Test entry interaction", () => {
     cy.findAllByRole("button", { name: /delete/i })
       .first()
       .click();
-    cy.wait(500);
+    cy.wait(2000);
     cy.findByRole("link", { name: /my entries/i }).click();
     cy.findByRole("heading", { name: /search/i }).should("be.visible");
     cy.contains(data.title + " edited").should("not.exist");

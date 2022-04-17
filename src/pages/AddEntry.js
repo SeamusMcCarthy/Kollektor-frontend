@@ -1,21 +1,23 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+
 import Input from "../shared/components/FormElements/Input";
 import Button from "../shared/components/FormElements/Button";
+import ErrorModal from "../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
+import ImageUpload from "../shared/components/FormElements/ImageUpload";
+import AuthContext from "../shared/contexts/auth-context";
+import { useForm } from "../shared/hooks/form-hook";
+import useHttpClient from "../shared/hooks/http-hook";
 import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../shared/util/validators";
-import "./EntryForm.css";
-import { useForm } from "../shared/hooks/form-hook";
-import Card from "@mui/material/Card";
-import useHttpClient from "../shared/hooks/http-hook";
-import AuthContext from "../shared/contexts/auth-context";
-import ErrorModal from "../shared/components/UIElements/ErrorModal";
-import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
-import { useHistory } from "react-router-dom";
-import ImageUpload from "../shared/components/FormElements/ImageUpload";
-import Grid from "@mui/material/Grid";
+
 import Header from "../components/Header";
+import "./EntryForm.css";
 
 const AddEntry = () => {
   document.title = "New Entry";

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
-import EntriesList from "./EntriesList";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import "./Search.css";
 import Grid from "@mui/material/Grid";
+
+import EntriesList from "./EntriesList";
+import "./Search.css";
 
 const Search = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
-
   const filteredEntries = props.items.filter((entry) => {
     return (
       entry.title.toLowerCase().includes(searchTerm.toLowerCase()) ||

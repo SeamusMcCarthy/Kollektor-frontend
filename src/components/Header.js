@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-
 import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -15,7 +14,6 @@ const Header = ({ title, history }) => {
         display: "flex",
         justifyContent: "space-around",
         flexWrap: "wrap",
-        // marginBottom: theme.spacing(1.5),
       }}
     >
       <IconButton aria-label="go back" onClick={() => history.goBack()}>

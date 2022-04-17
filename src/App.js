@@ -5,18 +5,20 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-import Categories from "./pages/CategoriesGrid";
-import Users from "./pages/Users";
-import Auth from "./pages/Auth";
+
+import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import AuthContext from "./shared/contexts/auth-context";
 import { useAuth } from "./shared/hooks/auth-hook";
-import MainNavigation from "./shared/components/Navigation/MainNavigation";
-import CategoryEntries from "./pages/CategoryEntries";
-import UserEntries from "./pages/UserEntries";
+
 import AddEntry from "./pages/AddEntry";
-import ViewEntry from "./pages/ViewEntry";
+import Auth from "./pages/Auth";
+import Categories from "./pages/CategoriesGrid";
+import CategoryEntries from "./pages/CategoryEntries";
 import UpdateEntry from "./pages/UpdateEntry";
 import UpdateProfile from "./pages/UpdateProfile";
+import UserEntries from "./pages/UserEntries";
+import Users from "./pages/Users";
+import ViewEntry from "./pages/ViewEntry";
 
 function App() {
   const { token, login, logout, userId } = useAuth();

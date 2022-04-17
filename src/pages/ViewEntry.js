@@ -1,15 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
-
-import useHttpClient from "../shared/hooks/http-hook";
-import ErrorModal from "../shared/components/UIElements/ErrorModal";
-import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
-import EntryItemDetail from "../components/EntryItemDetail";
-import Comments from "../components/Comments";
-import AuthContext from "../shared/contexts/auth-context";
 import { useHistory } from "react-router-dom";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
+
+import ErrorModal from "../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
+import AuthContext from "../shared/contexts/auth-context";
+import useHttpClient from "../shared/hooks/http-hook";
+
+import EntryItemDetail from "../components/EntryItemDetail";
+import Comments from "../components/Comments";
 import Header from "../components/Header";
 
 const ViewEntry = () => {

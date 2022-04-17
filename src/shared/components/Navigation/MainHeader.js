@@ -1,6 +1,7 @@
 import React from "react";
-import "./MainHeader.css";
 import { styled } from "@mui/material/styles";
+import "./MainHeader.css";
+
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 const MainHeader = (props) => {

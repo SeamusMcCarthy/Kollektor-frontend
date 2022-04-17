@@ -1,22 +1,23 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router";
+import Card from "@mui/material/Card";
+import Grid from "@mui/material/Grid";
+
 import Input from "../shared/components/FormElements/Input";
 import Button from "../shared/components/FormElements/Button";
-// import Card from "../shared/components/UIElements/Card";
-import Card from "@mui/material/Card";
+import ErrorModal from "../shared/components/UIElements/ErrorModal";
+import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
+import AuthContext from "../shared/contexts/auth-context";
+import { useForm } from "../shared/hooks/form-hook";
+import useHttpClient from "../shared/hooks/http-hook";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
 } from "../shared/util/validators";
-import "./EntryForm.css";
-import { useForm } from "../shared/hooks/form-hook";
-import useHttpClient from "../shared/hooks/http-hook";
-import ErrorModal from "../shared/components/UIElements/ErrorModal";
-import LoadingSpinner from "../shared/components/UIElements/LoadingSpinner";
-import AuthContext from "../shared/contexts/auth-context";
-import Grid from "@mui/material/Grid";
+
 import Header from "../components/Header";
+import "./EntryForm.css";
 
 function UpdateEntry(props) {
   document.title = "Update Entry";
@@ -124,7 +125,7 @@ function UpdateEntry(props) {
           <>
             <h2>Update Entry</h2>
             <hr />
-            <form className="entry-form" onSubmit={entryUpdateSubmitHandler}>
+            <form onSubmit={entryUpdateSubmitHandler}>
               <Input
                 id="title"
                 element="input"

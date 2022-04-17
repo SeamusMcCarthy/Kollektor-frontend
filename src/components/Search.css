@@ -1,8 +1,6 @@
 .search {
-  /* height: 20rem; */
   width: 100%;
   max-width: 25rem;
-  /* margin: 3rem auto; */
   margin: 20px auto;
   text-align: center;
   background: #a6a9ad;
@@ -30,6 +28,3 @@
   margin-top: 2%;
 }
 
-/* .left { 
-  float: left;
-} */

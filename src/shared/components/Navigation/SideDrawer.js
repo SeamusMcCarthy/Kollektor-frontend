@@ -5,10 +5,6 @@ import { CSSTransition } from "react-transition-group";
 import "./SideDrawer.css";
 
 const SideDrawer = (props) => {
-  // Use portal to display the drawer above root
-  // return <aside className="side-drawer">
-  //     {props.children}
-  // </aside>
   const content = (
     <CSSTransition
       in={props.show}
@@ -17,7 +13,9 @@ const SideDrawer = (props) => {
       mountOnEnter
       unmountOnExit
     >
-      <aside className="side-drawer" onClick={props.onClick}>{props.children}</aside>
+      <aside className="side-drawer" onClick={props.onClick}>
+        {props.children}
+      </aside>
     </CSSTransition>
   );
 
