@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Final Year Project - Kollektor MERN web app.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview.
 
-## Available Scripts
+This is the front-end repo for the Kollektor MERN web-app and contains the React code for the project. 
 
-In the project directory, you can run:
+Kollektor is a web app that allows users to create and maintain catalogues of their musical equipment. The project also includes a suite of automated tests. Site features include
+ 
+ + Login/Signup
+ + View entries by category
+ + View users & user entries
+ + Search entries
+ + Add new entries (only available when logged in)
+ + Edit/delete entries (only available to entry creator)
+ + Image upload to Cloudinary
+ + Comment/Reply on entries (only available when logged in)
+ + Edit profile details (only available when logged in)
+ + Geo-coded addressing for displaying purchase locations on a map
+ + Social media sharing
+ + Full set of automated Cypress tests (found in /cypress folder)
+ + Subset of tests in Playwright (found in /tests folder)
 
-### `npm start`
+## Setup requirements.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Once cloned, the following variables should be defined in .env
++ REACT_APP_API_KEY - Google API key for maps and geo-coding
++ REACT_APP_BACKEND_URL - URL for [backend](https://github.com/SeamusMcCarthy/kollektor-backend) 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Once these are defined and the backend is available, the app can be started via 'npm start' and will run on http://localhost:3000
